@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using EFT.UI;
 using GPUInstancer;
 using UnityEngine;
 
@@ -11,27 +9,29 @@ namespace CWX_MegaMod.GrassCutter
     {
         private List<GPUInstancerDetailManager> Grass;
 
-        public GrassCutterScript()
+        private void Awake()
         {
-            Grass = UnityEngine.Object.FindObjectsOfType<GPUInstancerDetailManager>().ToList();
+            Grass = FindObjectsOfType<GPUInstancerDetailManager>().ToList();
+
+            // FIXME: Does not work with Streets
         }
 
-        public Task StartTask()
+        public void StartTask()
         {
-            return Task.Factory.StartNew(() =>
+            if (Grass != null)
             {
                 foreach (var grass in Grass)
                 {
                     if (MegaMod.GrassCutter.Value == true)
                     {
-                        grass.gameObject.SetActive(false);
+                        grass.enabled = false;
                     }
                     else
                     {
-                        grass.gameObject.SetActive(true);
+                        grass.enabled = true;
                     }
                 }
-            });
+            }
         }
     }
 }

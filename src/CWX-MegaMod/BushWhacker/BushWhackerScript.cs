@@ -13,15 +13,15 @@ namespace CWX_MegaMod.BushWhacker
         private List<ObstacleCollider> Bushes;
         private List<BoxCollider> Swamps;
 
-        public BushWhackerScript()
+        private void Awake()
         {
-            Bushes = UnityEngine.Object.FindObjectsOfType<ObstacleCollider>().ToList();
-            Swamps = UnityEngine.Object.FindObjectsOfType<BoxCollider>().ToList();
+            Bushes = FindObjectsOfType<ObstacleCollider>().ToList();
+            Swamps = FindObjectsOfType<BoxCollider>().ToList();
         }
 
-        public Task StartTask()
+        public void StartTask()
         {
-            return Task.Factory.StartNew(() =>
+            if (Swamps != null)
             {
                 foreach (var swamp in Swamps)
                 {
@@ -37,7 +37,10 @@ namespace CWX_MegaMod.BushWhacker
                         }
                     }
                 }
+            }
 
+            if (Bushes != null)
+            {
                 foreach (var bushesItem in Bushes)
                 {
                     var filbert = bushesItem?.transform?.parent?.gameObject?.name?.Contains("filbert");
@@ -55,7 +58,7 @@ namespace CWX_MegaMod.BushWhacker
                         }
                     }
                 }
-            });
+            }
         }
     }
 }

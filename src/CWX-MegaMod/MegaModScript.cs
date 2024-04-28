@@ -1,10 +1,10 @@
 ﻿using Comfort.Common;
 using CWX_MegaMod.BushWhacker;
+using CWX_MegaMod.EnvironmentEnjoyer;
 using CWX_MegaMod.GrassCutter;
 using CWX_MegaMod.MasterKey;
 using EFT;
 using EFT.UI;
-using EFT.Weather;
 using UnityEngine;
 
 namespace CWX_MegaMod
@@ -13,10 +13,10 @@ namespace CWX_MegaMod
     {
         private GameWorld _gameWorld;
         private Player _player;
-        
-        private BushWhackerScript _bushWhackerScript;
-        private GrassCutterScript _grassCutterScript;
-        private MasterKeyScript _masterKeyScript;
+        public BushWhackerScript _bushWhackerScript;
+        public GrassCutterScript _grassCutterScript;
+        public MasterKeyScript _masterKeyScript;
+        public EnvironmentEnjoyerScript _environmentEnjoyerScript;
         
         private void Awake()
         {
@@ -51,12 +51,10 @@ namespace CWX_MegaMod
 
         private void SetupMegaModScripts()
         {
-            ConsoleScreen.LogError("[CWX-MegaMod] BushWhackerScript");
-            _bushWhackerScript = new BushWhackerScript();
-            ConsoleScreen.LogError("[CWX-MegaMod] GrassCutterScript");
-            _grassCutterScript = new GrassCutterScript();
-            ConsoleScreen.LogError("[CWX-MegaMod] MasterKeyScript");
-            _masterKeyScript = new MasterKeyScript();
+            _bushWhackerScript = _gameWorld.gameObject.AddComponent<BushWhackerScript>();
+            _grassCutterScript = _gameWorld.gameObject.AddComponent<GrassCutterScript>();
+            _masterKeyScript = _gameWorld.gameObject.AddComponent<MasterKeyScript>();
+            _environmentEnjoyerScript = _gameWorld.gameObject.AddComponent<EnvironmentEnjoyerScript>();
         }
 
         private void RunFirstTime()
@@ -64,6 +62,7 @@ namespace CWX_MegaMod
             _bushWhackerScript.StartTask();
             _grassCutterScript.StartTask();
             _masterKeyScript.StartTask();
+            _environmentEnjoyerScript.StartTask();
         }
 
         private void SetupMegaModEvents()
@@ -72,6 +71,7 @@ namespace CWX_MegaMod
             MegaMod.GrassCutter.SettingChanged += (a, b) => _grassCutterScript.StartTask();
             MegaMod.MasterKey.SettingChanged += (a, b) => _masterKeyScript.StartTask();
             MegaMod.MasterKeyToUse.SettingChanged += (a, b) => _masterKeyScript.StartTask();
+            MegaMod.EnvironmentEnjoyer.SettingChanged += (a, b) => _environmentEnjoyerScript.StartTask();
         }
     }
 }

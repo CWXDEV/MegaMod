@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using CWX_MegaMod.Config;
 using EFT.Interactive;
-using EFT.UI;
 using UnityEngine;
 
 namespace CWX_MegaMod.MasterKey
@@ -20,12 +17,12 @@ namespace CWX_MegaMod.MasterKey
         private List<Trunk> Trunks;
         private Dictionary<string, string> TrunkDefaults = new Dictionary<string, string>();
 
-        public MasterKeyScript()
+        private void Awake()
         {
-            Doors = UnityEngine.Object.FindObjectsOfType<Door>().ToList();
-            KeycardDoors = UnityEngine.Object.FindObjectsOfType<KeycardDoor>().ToList();
-            LootableContainers = UnityEngine.Object.FindObjectsOfType<LootableContainer>().ToList();
-            Trunks = UnityEngine.Object.FindObjectsOfType<Trunk>().ToList();
+            Doors = FindObjectsOfType<Door>().ToList();
+            KeycardDoors = FindObjectsOfType<KeycardDoor>().ToList();
+            LootableContainers = FindObjectsOfType<LootableContainer>().ToList();
+            Trunks = FindObjectsOfType<Trunk>().ToList();
 
             SetDefaults();
         }
@@ -34,7 +31,7 @@ namespace CWX_MegaMod.MasterKey
         {
             foreach (var door in Doors)
             {
-                if (door.KeyId != String.Empty)
+                if (door.KeyId != string.Empty)
                 {
                     DoorDefaults.Add(door.Id, door.KeyId);
                 }
@@ -42,7 +39,7 @@ namespace CWX_MegaMod.MasterKey
 
             foreach (var keycardDoor in KeycardDoors)
             {
-                if (keycardDoor.KeyId != String.Empty)
+                if (keycardDoor.KeyId != string.Empty)
                 {
                     KeycardDoorDefaults.Add(keycardDoor.Id, keycardDoor.KeyId);
                 }
@@ -50,7 +47,7 @@ namespace CWX_MegaMod.MasterKey
 
             foreach (var lootableContainer in LootableContainers)
             {
-                if (lootableContainer.KeyId != String.Empty)
+                if (lootableContainer.KeyId != string.Empty)
                 {
                     LootableContainerDefaults.Add(lootableContainer.Id, lootableContainer.KeyId);
                 }
@@ -58,77 +55,74 @@ namespace CWX_MegaMod.MasterKey
 
             foreach (var trunk in Trunks)
             {
-                if (trunk.KeyId != String.Empty)
+                if (trunk.KeyId != string.Empty)
                 {
                     TrunkDefaults.Add(trunk.Id, trunk.KeyId);
                 }
             }
         }
 
-        public Task StartTask()
+        public void StartTask()
         {
-            return Task.Factory.StartNew(() =>
+            foreach (var door in Doors)
             {
-                foreach (var door in Doors)
+                if (door.KeyId != string.Empty)
                 {
-                    if (door.KeyId != String.Empty)
+                    if (MegaMod.MasterKey.Value == true)
                     {
-                        if (MegaMod.MasterKey.Value == true)
-                        {
-                            door.KeyId = MasterKeyHelper.GetMasterKey(MegaMod.MasterKeyToUse.Value);
-                        }
-                        else
-                        {
-                            door.KeyId = DoorDefaults[door.Id];
-                        }
+                        door.KeyId = MasterKeyHelper.GetMasterKey(MegaMod.MasterKeyToUse.Value);
+                    }
+                    else
+                    {
+                        door.KeyId = DoorDefaults[door.Id];
                     }
                 }
+            }
 
-                foreach (var keycardDoor in KeycardDoors)
+            foreach (var keycardDoor in KeycardDoors)
+            {
+                if (keycardDoor.KeyId != string.Empty)
                 {
-                    if (keycardDoor.KeyId != String.Empty)
+                    if (MegaMod.MasterKey.Value == true)
                     {
-                        if (MegaMod.MasterKey.Value == true)
-                        {
-                            keycardDoor.KeyId = MasterKeyHelper.GetMasterKey(MegaMod.MasterKeyToUse.Value);
-                        }
-                        else
-                        {
-                            keycardDoor.KeyId = KeycardDoorDefaults[keycardDoor.Id];
-                        }
+                        keycardDoor.KeyId = MasterKeyHelper.GetMasterKey(MegaMod.MasterKeyToUse.Value);
+                    }
+                    else
+                    {
+                        keycardDoor.KeyId = KeycardDoorDefaults[keycardDoor.Id];
                     }
                 }
+            }
 
-                foreach (var lootableContainer in LootableContainers)
+            foreach (var lootableContainer in LootableContainers)
+            {
+                if (lootableContainer.KeyId != string.Empty)
                 {
-                    if (lootableContainer.KeyId != String.Empty)
+                    if (MegaMod.MasterKey.Value == true)
                     {
-                        if (MegaMod.MasterKey.Value == true)
-                        {
-                            lootableContainer.KeyId = MasterKeyHelper.GetMasterKey(MegaMod.MasterKeyToUse.Value);
-                        }
-                        else
-                        {
-                            lootableContainer.KeyId = LootableContainerDefaults[lootableContainer.Id];
-                        }
+                        lootableContainer.KeyId = MasterKeyHelper.GetMasterKey(MegaMod.MasterKeyToUse.Value);
+                    }
+                    else
+                    {
+                        lootableContainer.KeyId = LootableContainerDefaults[lootableContainer.Id];
                     }
                 }
+            }
 
-                foreach (var trunk in Trunks)
+            foreach (var trunk in Trunks)
+            {
+                if (trunk.KeyId != string.Empty)
                 {
-                    if (trunk.KeyId != String.Empty)
+                    if (MegaMod.MasterKey.Value == true)
                     {
-                        if (MegaMod.MasterKey.Value == true)
-                        {
-                            trunk.KeyId = MasterKeyHelper.GetMasterKey(MegaMod.MasterKeyToUse.Value);
-                        }
-                        else
-                        {
-                            trunk.KeyId = TrunkDefaults[trunk.Id];
-                        }
+                        trunk.KeyId = MasterKeyHelper.GetMasterKey(MegaMod.MasterKeyToUse.Value);
+                    }
+                    else
+                    {
+                        trunk.KeyId = TrunkDefaults[trunk.Id];
                     }
                 }
-            });
+            }
         }
     }
 }

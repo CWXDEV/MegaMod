@@ -36,6 +36,15 @@
         <Reference Include="UnityEngine.PhysicsModule">
             <HintPath>..\..\shared\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
+        <Reference Include="Sirenix.Serialization">
+            <HintPath>..\..\shared\Sirenix.Serialization.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+            <HintPath>..\..\shared\UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>..\..\shared\UnityEngine.UI.dll</HintPath>
+        </Reference>
     </ItemGroup>
     
 </Project>
