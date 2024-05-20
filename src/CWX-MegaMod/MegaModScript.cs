@@ -1,4 +1,5 @@
 ﻿using Comfort.Common;
+//using CWX_MegaMod.BotMonitor;
 using CWX_MegaMod.BushWhacker;
 using CWX_MegaMod.EnvironmentEnjoyer;
 using CWX_MegaMod.GrassCutter;
@@ -17,6 +18,7 @@ namespace CWX_MegaMod
         public GrassCutterScript _grassCutterScript;
         public MasterKeyScript _masterKeyScript;
         public EnvironmentEnjoyerScript _environmentEnjoyerScript;
+        //public MonitorClass _monitorClass;
         
         private void Awake()
         {
@@ -55,6 +57,7 @@ namespace CWX_MegaMod
             _grassCutterScript = _gameWorld.gameObject.AddComponent<GrassCutterScript>();
             _masterKeyScript = _gameWorld.gameObject.AddComponent<MasterKeyScript>();
             _environmentEnjoyerScript = _gameWorld.gameObject.AddComponent<EnvironmentEnjoyerScript>();
+            //_monitorClass = _gameWorld.gameObject.AddComponent<MonitorClass>();
         }
 
         private void RunFirstTime()

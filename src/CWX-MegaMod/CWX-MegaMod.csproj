@@ -45,6 +45,12 @@
         <Reference Include="UnityEngine.UI">
             <HintPath>..\..\shared\UnityEngine.UI.dll</HintPath>
         </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+            <HintPath>..\..\shared\UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath>..\..\shared\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
     </ItemGroup>
     
 </Project>

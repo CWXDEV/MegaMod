@@ -1,5 +1,6 @@
 .idea
 .vscode
+.vs
 src/CWX-MegaMod/obj
 src/CWX-MegaMod/bin
 src/CWX-MegaMod/Properties
