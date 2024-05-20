@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EFT.Interactive;
@@ -16,18 +17,29 @@ namespace CWX_MegaMod.MasterKey
         private Dictionary<string, string> LootableContainerDefaults = new Dictionary<string, string>();
         private List<Trunk> Trunks;
         private Dictionary<string, string> TrunkDefaults = new Dictionary<string, string>();
+        private bool ReadyToEdit = false;
 
         private void Awake()
+        {
+            StartCoroutine(GetObjects());
+        }
+
+        public void StartTask()
+        {
+            StartCoroutine(ChangeObjects());
+        }
+
+        private IEnumerator GetObjects()
         {
             Doors = FindObjectsOfType<Door>().ToList();
             KeycardDoors = FindObjectsOfType<KeycardDoor>().ToList();
             LootableContainers = FindObjectsOfType<LootableContainer>().ToList();
             Trunks = FindObjectsOfType<Trunk>().ToList();
-
-            SetDefaults();
+            StartCoroutine(SetDefaults());
+            yield return null;
         }
 
-        private void SetDefaults()
+        private IEnumerator SetDefaults()
         {
             foreach (var door in Doors)
             {
@@ -60,10 +72,14 @@ namespace CWX_MegaMod.MasterKey
                     TrunkDefaults.Add(trunk.Id, trunk.KeyId);
                 }
             }
+            ReadyToEdit = true;
+            
+            yield return null;
         }
 
-        public void StartTask()
+        private IEnumerator ChangeObjects()
         {
+            yield return new WaitUntil(() => ReadyToEdit);
             foreach (var door in Doors)
             {
                 if (door.KeyId != string.Empty)
@@ -123,6 +139,8 @@ namespace CWX_MegaMod.MasterKey
                     }
                 }
             }
+
+            yield return null;
         }
     }
 }

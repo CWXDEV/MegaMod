@@ -1,4 +1,5 @@
 ﻿using Aki.Reflection.Patching;
+using EFT.InventoryLogic;
 using HarmonyLib;
 using System.Reflection;
 
@@ -12,10 +13,15 @@ namespace CWX_MegaMod.InventoryViewer
 		}
 
 		[PatchPrefix]
-		public static bool PatchPrefix(InventoryControllerClass __instance, ref bool __result)
+		public static bool PatchPrefix(InventoryControllerClass __instance, Slot slot, EquipmentSlot slotName, ref bool __result)
 		{
 			if (MegaMod.InventoryViewer.Value)
 			{
+                if (slotName == EquipmentSlot.Dogtag && slot.ParentItem.Parent.GetOwner() == __instance)
+                {
+                    return true;
+                }
+
 				__result = true;
 				return false;
 			}

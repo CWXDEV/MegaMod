@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using GPUInstancer;
 using UnityEngine;
@@ -8,16 +10,28 @@ namespace CWX_MegaMod.GrassCutter
     public class GrassCutterScript : MonoBehaviour
     {
         private List<GPUInstancerDetailManager> Grass;
+        private bool ReadyToEdit = false;
 
         private void Awake()
         {
-            Grass = FindObjectsOfType<GPUInstancerDetailManager>().ToList();
-
-            // FIXME: Does not work with Streets
-        }
+            StartCoroutine(GetObjects());
+        }        
 
         public void StartTask()
         {
+            StartCoroutine(ChangeObjects());
+        }
+
+        private IEnumerator GetObjects()
+        {
+            Grass = FindObjectsOfType<GPUInstancerDetailManager>().ToList();
+            ReadyToEdit = true;
+            yield return null;
+        }
+
+        private IEnumerator ChangeObjects()
+        {
+            yield return new WaitUntil(() => ReadyToEdit);
             if (Grass != null)
             {
                 foreach (var grass in Grass)
@@ -32,6 +46,8 @@ namespace CWX_MegaMod.GrassCutter
                     }
                 }
             }
+
+            yield return null;
         }
     }
 }

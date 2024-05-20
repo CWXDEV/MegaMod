@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using EFT.Interactive;
-using EFT.UI;
 using UnityEngine;
 
 namespace CWX_MegaMod.BushWhacker
@@ -12,15 +10,29 @@ namespace CWX_MegaMod.BushWhacker
     {
         private List<ObstacleCollider> Bushes;
         private List<BoxCollider> Swamps;
+        private bool ReadyToEdit = false;
 
         private void Awake()
         {
-            Bushes = FindObjectsOfType<ObstacleCollider>().ToList();
-            Swamps = FindObjectsOfType<BoxCollider>().ToList();
+            StartCoroutine(GetObjects());
         }
 
         public void StartTask()
         {
+            StartCoroutine(ChangeObjects());
+        }
+
+        private IEnumerator GetObjects()
+        {
+            Bushes = FindObjectsOfType<ObstacleCollider>().ToList();
+            Swamps = FindObjectsOfType<BoxCollider>().ToList();
+            ReadyToEdit = true;
+            yield return null;
+        }
+
+        public IEnumerator ChangeObjects()
+        {
+            yield return new WaitUntil(() => ReadyToEdit);
             if (Swamps != null)
             {
                 foreach (var swamp in Swamps)
@@ -59,6 +71,8 @@ namespace CWX_MegaMod.BushWhacker
                     }
                 }
             }
+
+            yield return null;
         }
     }
 }

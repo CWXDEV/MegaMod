@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Comfort.Common;
@@ -10,6 +11,7 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
     {
         private List<GameObject> TreeBush = new List<GameObject>();
         private GameWorld _gameWorld;
+        private bool ReadyToEdit = false;
 
         private void Awake()
         {
@@ -20,6 +22,12 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
 
         public void StartTask()
         {
+            StartCoroutine(ChangeObjects());
+        }
+
+        private IEnumerator ChangeObjects()
+        {
+            yield return new WaitUntil(() => ReadyToEdit);
             if (TreeBush != null)
             {
                 foreach (var bush in TreeBush)
@@ -34,6 +42,8 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
                     }
                 }
             }
+
+            yield return null;
         }
 
         public void GetGameObjects()
@@ -69,6 +79,8 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
                 default:
                     break;
             }
+
+            ReadyToEdit = true;
         }
 
         /**
