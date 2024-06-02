@@ -38,3 +38,5 @@ BotMonitor - Disabled for now
 ## TODO:
 - look into other ways to activate and deactivate gameobjects to avoid stutter.
 - fix up botmonitor.
+- fix up desharpener for the new version of effects
+- fix up weatherpatcher
