@@ -28,6 +28,7 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         private IEnumerator ChangeObjects()
         {
             yield return new WaitUntil(() => ReadyToEdit);
+
             if (TreeBush != null)
             {
                 foreach (var bush in TreeBush)

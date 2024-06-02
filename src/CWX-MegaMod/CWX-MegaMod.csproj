@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <AssemblyName>CWX_MegaMod</AssemblyName>
-        <TargetFramework>net472</TargetFramework>
+        <TargetFramework>net471</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
@@ -52,5 +52,5 @@
             <HintPath>..\..\shared\UnityEngine.TextRenderingModule.dll</HintPath>
         </Reference>
     </ItemGroup>
-    
+
 </Project>

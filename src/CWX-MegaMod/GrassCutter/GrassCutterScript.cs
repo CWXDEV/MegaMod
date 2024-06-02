@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using GPUInstancer;
@@ -15,7 +14,7 @@ namespace CWX_MegaMod.GrassCutter
         private void Awake()
         {
             StartCoroutine(GetObjects());
-        }        
+        }
 
         public void StartTask()
         {
