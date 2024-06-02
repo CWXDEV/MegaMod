@@ -2,14 +2,14 @@ I got fed up with multiple mods, so I combined them into one.
 
 works with 3.8.3 for now. (will not work for 3.9.0)
 
-BushWhacker
-GrassCutter
-EnvironmentEnjoyer
-MasterKey
-InventoryViewer
-SpaceUser
-TradingPlayerView - needs a fancy name
-BotMonitor - Disabled for now
+- BushWhacker
+- GrassCutter
+- EnvironmentEnjoyer
+- MasterKey
+- InventoryViewer
+- SpaceUser
+- TradingPlayerView - needs a fancy name
+- BotMonitor - Disabled for now
 
 ## BushWhacker
 - Disables collision with bushes, so you can run through them like the good old days
