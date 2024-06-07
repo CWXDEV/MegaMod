@@ -9,6 +9,8 @@ works with 3.8.3 for now. (will not work for 3.9.0)
 - InventoryViewer
 - SpaceUser
 - TradingPlayerView - needs a fancy name
+- PainkillerDesat
+- WeatherPatcher
 - BotMonitor - Disabled for now
 
 ## BushWhacker
@@ -32,11 +34,17 @@ works with 3.8.3 for now. (will not work for 3.9.0)
 ## TradingPlayerView
 - Removes that stupid ass box that comes up when selling to a trader and you hover a junk box and it spams you saying items cant be sold
 
+## PainkillerDesat
+- Removes the stupid ass painkiller effects
+
+## WeatherPatcher
+- there are 2 options:
+    - disable fog completely
+    - enable weather debug mode - makes is sunny all the time
+
 ## License
 - License allows anyone to use the code, just give credit is all I ask.
 
 ## TODO:
 - look into other ways to activate and deactivate gameobjects to avoid stutter.
 - fix up botmonitor.
-- fix up desharpener for the new version of effects
-- fix up weatherpatcher
