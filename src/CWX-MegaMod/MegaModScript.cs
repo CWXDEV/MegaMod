@@ -1,11 +1,9 @@
 ﻿using Comfort.Common;
-//using CWX_MegaMod.BotMonitor;
 using CWX_MegaMod.BushWhacker;
 using CWX_MegaMod.EnvironmentEnjoyer;
-using CWX_MegaMod.FogRemover;
 using CWX_MegaMod.GrassCutter;
 using CWX_MegaMod.MasterKey;
-using CWX_MegaMod.PainkillerDesat;
+using CWX_MegaMod.WeatherPatcher;
 using EFT;
 using EFT.UI;
 using UnityEngine;
@@ -20,8 +18,7 @@ namespace CWX_MegaMod
         public GrassCutterScript _grassCutterScript;
         public MasterKeyScript _masterKeyScript;
         public EnvironmentEnjoyerScript _environmentEnjoyerScript;
-        public FogRemoverScript _fogRemoverScript;
-        //public MonitorClass _monitorClass;
+        public WeatherPatcherScript _weatherPatcherScript;
 
         private void Awake()
         {
@@ -60,8 +57,7 @@ namespace CWX_MegaMod
             _grassCutterScript = _gameWorld.gameObject.AddComponent<GrassCutterScript>();
             _masterKeyScript = _gameWorld.gameObject.AddComponent<MasterKeyScript>();
             _environmentEnjoyerScript = _gameWorld.gameObject.AddComponent<EnvironmentEnjoyerScript>();
-            //_fogRemoverScript = _gameWorld.gameObject.AddComponent<FogRemoverScript>();
-            //_monitorClass = _gameWorld.gameObject.AddComponent<MonitorClass>();
+            _weatherPatcherScript = _gameWorld.gameObject.AddComponent<WeatherPatcherScript>();
         }
 
         private void RunFirstTime()
@@ -70,7 +66,7 @@ namespace CWX_MegaMod
             _grassCutterScript.StartTask();
             _masterKeyScript.StartTask();
             _environmentEnjoyerScript.StartTask();
-            //_fogRemoverScript.StartTask();
+            _weatherPatcherScript.StartTask();
         }
 
         private void SetupMegaModEvents()
@@ -80,8 +76,8 @@ namespace CWX_MegaMod
             MegaMod.MasterKey.SettingChanged += (a, b) => _masterKeyScript.StartTask();
             MegaMod.MasterKeyToUse.SettingChanged += (a, b) => _masterKeyScript.StartTask();
             MegaMod.EnvironmentEnjoyer.SettingChanged += (a, b) => _environmentEnjoyerScript.StartTask();
-            //MegaMod.FogRemover.SettingChanged += (a, b) => _fogRemoverScript.StartTask();
-            //MegaMod.SunMode.SettingChanged += (a, b) => _fogRemoverScript.StartTask();
+            MegaMod.FogRemover.SettingChanged += (a, b) => _weatherPatcherScript.StartTask();
+            MegaMod.WeatherDebug.SettingChanged += (a, b) => _weatherPatcherScript.StartTask();
         }
     }
 }
