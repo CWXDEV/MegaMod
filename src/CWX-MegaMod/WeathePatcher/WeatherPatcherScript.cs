@@ -23,8 +23,18 @@ namespace CWX_MegaMod.WeatherPatcher
         public void StartTask()
         {
             // fog related
-            camera.Camera.gameObject.GetComponentInChildren<CustomGlobalFog>().enabled = !MegaMod.FogRemover.Value;
-            camera.Camera.gameObject.GetComponentInChildren<TOD_Scattering>().enabled = !MegaMod.FogRemover.Value;
+            var customGFog = camera.Camera.gameObject.GetComponentInChildren<CustomGlobalFog>();
+            var TOD_scattering = camera.Camera.gameObject.GetComponentInChildren<TOD_Scattering>();
+
+            if (customGFog != null)
+            {
+                customGFog.enabled = !MegaMod.FogRemover.Value;
+            }
+
+            if (TOD_scattering != null)
+            {
+                TOD_scattering.enabled = !MegaMod.FogRemover.Value;
+            }
 
             if (weatherController != null)
             {
