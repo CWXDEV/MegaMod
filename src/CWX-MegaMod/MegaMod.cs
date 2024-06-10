@@ -9,7 +9,7 @@ using CWX_MegaMod.TradingPlayerView;
 
 namespace CWX_MegaMod
 {
-	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.1.1")]
+	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.1.2")]
 	public class MegaMod : BaseUnityPlugin
 	{
 		internal new static ManualLogSource Logger { get; private set; }

@@ -25,6 +25,7 @@ namespace CWX_MegaMod.WeatherPatcher
             // fog related
             var customGFog = camera.Camera.gameObject.GetComponentInChildren<CustomGlobalFog>();
             var TOD_scattering = camera.Camera.gameObject.GetComponentInChildren<TOD_Scattering>();
+            var MBOIT = camera.Camera.gameObject.GetComponentInChildren<MBOIT_Scattering>();
 
             if (customGFog != null)
             {
@@ -34,6 +35,11 @@ namespace CWX_MegaMod.WeatherPatcher
             if (TOD_scattering != null)
             {
                 TOD_scattering.enabled = !MegaMod.FogRemover.Value;
+            }
+
+            if (MBOIT != null)
+            {
+                MBOIT.enabled = !MegaMod.FogRemover.Value;
             }
 
             if (weatherController != null)
