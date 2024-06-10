@@ -57,16 +57,31 @@ namespace CWX_MegaMod.BushWhacker
                 {
                     var filbert = bushesItem?.transform?.parent?.gameObject?.name?.Contains("filbert");
                     var fibert = bushesItem?.transform?.parent?.gameObject?.name?.Contains("fibert");
+                    var fibert2 = bushesItem?.transform?.name?.Contains("fibert");
+                    var filbert2 = bushesItem?.transform?.name?.Contains("filbert");
+                    var swamp = bushesItem?.transform?.name.Contains("Swamp_collider");
 
                     if (filbert == true || fibert == true)
                     {
-                        if (MegaMod.BushWhacker.Value == true)
+                        if (MegaMod.BushWhacker.Value)
                         {
                             bushesItem.enabled = false;
                         }
                         else
                         {
                             bushesItem.enabled = true;
+                        }
+                    }
+
+                    if (filbert2 == true || fibert2 == true || swamp == true)
+                    {
+                        if (MegaMod.BushWhacker.Value)
+                        {
+                            bushesItem.gameObject.SmartDisable();
+                        }
+                        else
+                        {
+                            bushesItem.gameObject.SmartEnable();
                         }
                     }
                 }
