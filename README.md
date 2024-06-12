@@ -48,3 +48,4 @@ works with 3.8.3 for now. (will not work for 3.9.0)
 ## TODO:
 - look into other ways to activate and deactivate gameobjects to avoid stutter.
 - fix up botmonitor.
+- fix fog with scope
