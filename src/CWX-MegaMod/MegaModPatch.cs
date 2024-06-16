@@ -12,14 +12,16 @@ namespace CWX_MegaMod
         {
             return AccessTools.Method(typeof(GameWorld), nameof(GameWorld.OnGameStarted));
         }
-        
+
         [PatchPostfix]
         public static void PatchPostFix()
         {
             var gameWorld = Singleton<GameWorld>.Instance;
 
             if (gameWorld == null)
+            {
                 return;
+            }
 
             gameWorld.gameObject.AddComponent<MegaModScript>();
         }

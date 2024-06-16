@@ -28,10 +28,8 @@ namespace CWX_MegaMod.TradingPlayerView
 
                 return false;
             }
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EFT.Interactive;
 using UnityEngine;
 
@@ -21,25 +22,24 @@ namespace CWX_MegaMod.MasterKey
 
         private void Awake()
         {
-            StartCoroutine(GetObjects());
+            GetObjects();
         }
 
         public void StartTask()
         {
-            StartCoroutine(ChangeObjects());
+            ChangeObjects();
         }
 
-        private IEnumerator GetObjects()
+        private async Task GetObjects()
         {
             Doors = FindObjectsOfType<Door>().ToList();
             KeycardDoors = FindObjectsOfType<KeycardDoor>().ToList();
             LootableContainers = FindObjectsOfType<LootableContainer>().ToList();
             Trunks = FindObjectsOfType<Trunk>().ToList();
-            StartCoroutine(SetDefaults());
-            yield return null;
+            SetDefaults();
         }
 
-        private IEnumerator SetDefaults()
+        private void SetDefaults()
         {
             foreach (var door in Doors)
             {
@@ -72,14 +72,17 @@ namespace CWX_MegaMod.MasterKey
                     TrunkDefaults.Add(trunk.Id, trunk.KeyId);
                 }
             }
+
             ReadyToEdit = true;
-            
-            yield return null;
         }
 
-        private IEnumerator ChangeObjects()
+        private async Task ChangeObjects()
         {
-            yield return new WaitUntil(() => ReadyToEdit);
+            while (!ReadyToEdit)
+            {
+                await Task.Delay(500);
+            }
+
             foreach (var door in Doors)
             {
                 if (door.KeyId != string.Empty)
@@ -139,8 +142,6 @@ namespace CWX_MegaMod.MasterKey
                     }
                 }
             }
-
-            yield return null;
         }
     }
 }

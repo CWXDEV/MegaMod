@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using GPUInstancer;
 using UnityEngine;
 
@@ -13,40 +14,34 @@ namespace CWX_MegaMod.GrassCutter
 
         private void Awake()
         {
-            StartCoroutine(GetObjects());
+            GetObjects();
         }
 
         public void StartTask()
         {
-            StartCoroutine(ChangeObjects());
+            ChangeObjects();
         }
 
-        private IEnumerator GetObjects()
+        private async Task GetObjects()
         {
             Grass = FindObjectsOfType<GPUInstancerDetailManager>().ToList();
             ReadyToEdit = true;
-            yield return null;
         }
 
-        private IEnumerator ChangeObjects()
+        private async Task ChangeObjects()
         {
-            yield return new WaitUntil(() => ReadyToEdit);
+            while (!ReadyToEdit)
+            {
+                await Task.Delay(500);
+            }
+
             if (Grass != null)
             {
                 foreach (var grass in Grass)
                 {
-                    if (MegaMod.GrassCutter.Value == true)
-                    {
-                        grass.enabled = false;
-                    }
-                    else
-                    {
-                        grass.enabled = true;
-                    }
+                    grass.SetEnabledUniversal(!MegaMod.GrassCutter.Value);
                 }
             }
-
-            yield return null;
         }
     }
 }

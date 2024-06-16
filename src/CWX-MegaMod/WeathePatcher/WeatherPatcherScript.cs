@@ -8,6 +8,13 @@ namespace CWX_MegaMod.WeatherPatcher
         private CameraClass camera;
         private WeatherController weatherController;
         private float debugFogFloat = 0f;
+        private CustomGlobalFog globalFog = null;
+        private TOD_Scattering scattering = null;
+        private MBOIT_Scattering mboit = null;
+        public static bool ScopeRunOnce = false;
+        public static CustomGlobalFog ScopeGlobalFog = null;
+        public static TOD_Scattering ScopeScattering = null;
+        public static MBOIT_Scattering ScopeMboit = null;
 
         private void Awake()
         {
@@ -18,28 +25,33 @@ namespace CWX_MegaMod.WeatherPatcher
             {
                 debugFogFloat = weatherController.WeatherDebug.Fog;
             }
+
+            if (camera.Camera != null)
+            {
+                globalFog = camera.Camera.gameObject.GetComponentInChildren<CustomGlobalFog>();
+                scattering = camera.Camera.gameObject.GetComponentInChildren<TOD_Scattering>();
+                mboit = camera.Camera.gameObject.GetComponentInChildren<MBOIT_Scattering>();
+            }
         }
 
         public void StartTask()
         {
             // fog related
-            var customGFog = camera.Camera.gameObject.GetComponentInChildren<CustomGlobalFog>();
-            var TOD_scattering = camera.Camera.gameObject.GetComponentInChildren<TOD_Scattering>();
-            var MBOIT = camera.Camera.gameObject.GetComponentInChildren<MBOIT_Scattering>();
 
-            if (customGFog != null)
+
+            if (globalFog != null)
             {
-                customGFog.enabled = !MegaMod.FogRemover.Value;
+                globalFog.enabled = !MegaMod.FogRemover.Value;
             }
 
-            if (TOD_scattering != null)
+            if (scattering != null)
             {
-                TOD_scattering.enabled = !MegaMod.FogRemover.Value;
+                scattering.enabled = !MegaMod.FogRemover.Value;
             }
 
-            if (MBOIT != null)
+            if (mboit != null)
             {
-                MBOIT.enabled = !MegaMod.FogRemover.Value;
+                mboit.enabled = !MegaMod.FogRemover.Value;
             }
 
             if (weatherController != null)
@@ -63,6 +75,14 @@ namespace CWX_MegaMod.WeatherPatcher
                     weatherController.WeatherDebug.Enabled = false;
                 }
             }
+        }
+
+        public void OnDestroy()
+        {
+            ScopeRunOnce = false;
+            ScopeGlobalFog = null;
+            ScopeScattering = null;
+            ScopeMboit = null;
         }
     }
 }

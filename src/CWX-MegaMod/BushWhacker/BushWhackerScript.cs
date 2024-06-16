@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EFT.Interactive;
 using UnityEngine;
 
@@ -14,39 +14,35 @@ namespace CWX_MegaMod.BushWhacker
 
         private void Awake()
         {
-            StartCoroutine(GetObjects());
+            GetObjects();
         }
 
         public void StartTask()
         {
-            StartCoroutine(ChangeObjects());
+            ChangeObjects();
         }
 
-        private IEnumerator GetObjects()
+        private async Task GetObjects()
         {
             Bushes = FindObjectsOfType<ObstacleCollider>().ToList();
             Swamps = FindObjectsOfType<BoxCollider>().ToList();
             ReadyToEdit = true;
-            yield return null;
         }
 
-        public IEnumerator ChangeObjects()
+        public async Task ChangeObjects()
         {
-            yield return new WaitUntil(() => ReadyToEdit);
+            while (!ReadyToEdit)
+            {
+                await Task.Delay(500);
+            }
+
             if (Swamps != null)
             {
                 foreach (var swamp in Swamps)
                 {
                     if (swamp.name == "Swamp_collider")
                     {
-                        if (MegaMod.BushWhacker.Value == true)
-                        {
-                            swamp.enabled = false;
-                        }
-                        else
-                        {
-                            swamp.enabled = true;
-                        }
+                        swamp.SetEnabledUniversal(!MegaMod.BushWhacker.Value);
                     }
                 }
             }
@@ -55,39 +51,23 @@ namespace CWX_MegaMod.BushWhacker
             {
                 foreach (var bushesItem in Bushes)
                 {
-                    var filbert = bushesItem?.transform?.parent?.gameObject?.name?.Contains("filbert");
-                    var fibert = bushesItem?.transform?.parent?.gameObject?.name?.Contains("fibert");
-                    var fibert2 = bushesItem?.transform?.name?.Contains("fibert");
-                    var filbert2 = bushesItem?.transform?.name?.Contains("filbert");
-                    var swamp = bushesItem?.transform?.name.Contains("Swamp_collider");
+                    var filbert = bushesItem?.transform?.parent?.gameObject?.name.ToLower().Contains("filbert");
+                    var fibert = bushesItem?.transform?.parent?.gameObject?.name.ToLower().Contains("fibert");
+                    var fibert2 = bushesItem?.transform?.name.ToLower().Contains("fibert");
+                    var filbert2 = bushesItem?.transform?.name.ToLower().Contains("filbert");
+                    var swamp = bushesItem?.transform?.name.ToLower().Contains("swamp");
 
                     if (filbert == true || fibert == true)
                     {
-                        if (MegaMod.BushWhacker.Value)
-                        {
-                            bushesItem.enabled = false;
-                        }
-                        else
-                        {
-                            bushesItem.enabled = true;
-                        }
+                        bushesItem.SetEnabledUniversal(!MegaMod.BushWhacker.Value);
                     }
 
                     if (filbert2 == true || fibert2 == true || swamp == true)
                     {
-                        if (MegaMod.BushWhacker.Value)
-                        {
-                            bushesItem.gameObject.SmartDisable();
-                        }
-                        else
-                        {
-                            bushesItem.gameObject.SmartEnable();
-                        }
+                        bushesItem.gameObject.SetActive(!MegaMod.BushWhacker.Value);
                     }
                 }
             }
-
-            yield return null;
         }
     }
 }

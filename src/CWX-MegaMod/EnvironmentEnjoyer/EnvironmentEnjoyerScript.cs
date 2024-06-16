@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Comfort.Common;
 using EFT;
 using UnityEngine;
@@ -22,32 +23,26 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
 
         public void StartTask()
         {
-            StartCoroutine(ChangeObjects());
+            ChangeObjects();
         }
 
-        private IEnumerator ChangeObjects()
+        private async Task ChangeObjects()
         {
-            yield return new WaitUntil(() => ReadyToEdit);
+            while (!ReadyToEdit)
+            {
+                await Task.Delay(500);
+            }
 
             if (TreeBush != null)
             {
                 foreach (var bush in TreeBush)
                 {
-                    if (MegaMod.EnvironmentEnjoyer.Value == true)
-                    {
-                        bush.SetActive(false);
-                    }
-                    else
-                    {
-                        bush.SetActive(true);
-                    }
+                    bush.SetActive(!MegaMod.EnvironmentEnjoyer.Value);
                 }
             }
-
-            yield return null;
         }
 
-        public void GetGameObjects()
+        public async Task GetGameObjects()
         {
             switch (_gameWorld.LocationId.ToLower())
             {

@@ -6,10 +6,11 @@ using CWX_MegaMod.InventoryViewer;
 using CWX_MegaMod.PainkillerDesat;
 using CWX_MegaMod.SpaceUser;
 using CWX_MegaMod.TradingPlayerView;
+using CWX_MegaMod.WeatherPatcher;
 
 namespace CWX_MegaMod
 {
-	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.1.2")]
+	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.2.0")]
 	public class MegaMod : BaseUnityPlugin
 	{
 		internal new static ManualLogSource Logger { get; private set; }
@@ -38,7 +39,7 @@ namespace CWX_MegaMod
             new PainkillerDesatScript1().Enable();
             new PainkillerDesatScript2().Enable();
             new PainkillerDesatScript3().Enable();
-            new PainkillerDesatScript4().Enable();
+			new WeatherPatcherScopePatch().Enable();
 		}
 
 		private void InitConfig()
