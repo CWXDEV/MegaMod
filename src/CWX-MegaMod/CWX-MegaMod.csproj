@@ -51,6 +51,15 @@
         <Reference Include="UnityEngine.TextRenderingModule">
             <HintPath>..\..\shared\UnityEngine.TextRenderingModule.dll</HintPath>
         </Reference>
+        <Reference Include="UnityEngine.AudioModule">
+            <HintPath>..\..\shared\UnityEngine.AudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+            <HintPath>..\..\shared\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestModule">
+            <HintPath>..\..\shared\UnityEngine.UnityWebRequestModule.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

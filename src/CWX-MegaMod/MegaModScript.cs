@@ -1,4 +1,5 @@
 ﻿using Comfort.Common;
+using CWX_MegaMod.AlarmChanger;
 using CWX_MegaMod.BushWhacker;
 using CWX_MegaMod.EnvironmentEnjoyer;
 using CWX_MegaMod.GrassCutter;
@@ -19,6 +20,7 @@ namespace CWX_MegaMod
         public MasterKeyScript _masterKeyScript;
         public EnvironmentEnjoyerScript _environmentEnjoyerScript;
         public WeatherPatcherScript _weatherPatcherScript;
+        public AlarmChangerScript _alarmChangerScript;
 
         private void Awake()
         {
@@ -58,6 +60,7 @@ namespace CWX_MegaMod
             _masterKeyScript = _gameWorld.gameObject.AddComponent<MasterKeyScript>();
             _environmentEnjoyerScript = _gameWorld.gameObject.AddComponent<EnvironmentEnjoyerScript>();
             _weatherPatcherScript = _gameWorld.gameObject.AddComponent<WeatherPatcherScript>();
+            _alarmChangerScript = _gameWorld.gameObject.AddComponent<AlarmChangerScript>();
         }
 
         private void RunFirstTime()
