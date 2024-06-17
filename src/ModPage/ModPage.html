@@ -1,0 +1,306 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css" />
+
+<style>
+    .pgap {
+        margin: 5px 0;
+    }
+
+    .modheader {
+        font-size: 30px;
+    }
+
+    .modbox {
+        border: 2px solid gray;
+        border-radius: 5px;
+        text-align: center;
+        margin: 20px;
+        padding: 10px;
+    }
+
+    div.modbox div.tabs {
+        overflow: hidden;
+        border-bottom: 1px solid rgb(62, 68, 70);
+        padding: 5px;
+        color: white;
+    }
+
+    div.tabs button {
+        padding: 8px;
+    }
+
+    div.tabs button.tablink {
+        background-color: inherit;
+        border: none !important;
+        outline: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        color: white;
+    }
+
+    div.tabs button.tablink:hover {
+        background-color: rgb(43, 47, 49) !important;
+    }
+
+    div.tabs button.tablink.active {
+        background-color: rgb(53, 57, 59) !important;
+    }
+
+    .tabcontent {
+        display: none;
+        padding: 20px;
+        border-top: none;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    .modimg {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .img-comp-container {
+        position: relative;
+        height: 400px;
+        /*should be the same height as the images*/
+    }
+
+    .img-comp-img {
+        position: absolute;
+        width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .img-comp-img img {
+        display: block;
+        vertical-align: middle;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .img-comp-slider {
+        position: absolute;
+        z-index: 9;
+        cursor: ew-resize;
+        /*set the appearance of the slider:*/
+        width: 40px;
+        height: 40px;
+        background-color: #2196F3;
+        opacity: 0.7;
+        border-radius: 50%;
+    }
+
+    img-comparison-slider {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    img-comparison-slider img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .modbox iframe {
+        display: block;
+        border: none;
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        max-height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+</style>
+
+<div class="modbox">
+    <p class="pgap modheader" style="text-decoration: underline;">ABOUT</p>
+    <p class="pgap">I got fed up with maintaining multiple mods, so I combined them into one.</p>
+    <p class="pgap" style="color: green; text-decoration: underline;">They all start disabled</p>
+    <p class="pgap modheader" style="color: green;">Use the F12 config menu to turn things on/off and configure.</p>
+    <p class="pgap">Placeholder images will be updated</p>
+</div>
+
+<div class="modbox">
+
+    <div class="tabs">
+        <button class="tablink active" onclick="openTab(event, 'BushWhacker')">BushWhacker</button>
+        <button class="tablink" onclick="openTab(event, 'GrassCutter')">GrassCutter</button>
+        <button class="tablink" onclick="openTab(event, 'EnvironmentEnjoyer')">EnvironmentEnjoyer</button>
+        <button class="tablink" onclick="openTab(event, 'MasterKey')">MasterKey</button>
+        <button class="tablink" onclick="openTab(event, 'InventoryViewer')">InventoryViewer</button>
+        <button class="tablink" onclick="openTab(event, 'SpaceUser')">SpaceUser</button>
+        <button class="tablink" onclick="openTab(event, 'TradingPlayerView')">TradingPlayerView</button>
+        <button class="tablink" onclick="openTab(event, 'WeatherPatcher')">WeatherPatcher</button>
+        <button class="tablink" onclick="openTab(event, 'PainkillerDesat')">PainkillerDesat</button>
+        <button class="tablink" onclick="openTab(event, 'AlarmReplacer')">AlarmReplacer</button>
+    </div>
+
+    <div id="BushWhacker" class="tabcontent" style="display: block;">
+        <p class="pgap">BushWhacker</p>
+        <img class="modimg" src="https://i.imgur.com/C5p8gdw.gif" alt="BushWhacker gif">
+        <p class="pgap">Disables collision with bushes, so you can run through them like the good old days.</p>
+    </div>
+
+    <div id="GrassCutter" class="tabcontent">
+        <p class="pgap">GrassCutter</p>
+        <img-comparison-slider>
+            <img slot="first" src="https://i.imgur.com/vDtjj0k.png">
+            <img slot="second" src="https://i.imgur.com/GjNTv2s.png">
+        </img-comparison-slider>
+        <p class="pgap">Disables Grass from being visable, might help with performance for some.</p>
+    </div>
+
+    <div id="EnvironmentEnjoyer" class="tabcontent">
+        <p class="pgap">EnvironmentEnjoyer</p>
+        <img-comparison-slider>
+            <img slot="first" src="https://i.imgur.com/zdehZ4n.png">
+            <img slot="second" src="https://i.imgur.com/Q5wIPaM.png">
+        </img-comparison-slider>
+        <p class="pgap">Disables Trees and Bushes from being visable, looks mighty weird.</p>
+    </div>
+
+    <div id="MasterKey" class="tabcontent">
+        <p class="pgap">MasterKey</p>
+        <img class="modimg" src="https://i.imgur.com/BBmp2yR.gif" alt="MasterKey gif">
+        <p class="pgap">Disables Trees and Bushes from being visable, looks mighty weird.</p>
+    </div>
+
+    <div id="InventoryViewer" class="tabcontent">
+        <p class="pgap">InventoryViewer</p>
+        <img-comparison-slider>
+            <img slot="first" src="https://i.imgur.com/6G5XXd4.png">
+            <img slot="second" src="https://i.imgur.com/P5FE5WM.png">
+        </img-comparison-slider>
+        <p class="pgap">Debug tool to see everything the corpses have on them (including prison wallet).</p>
+    </div>
+
+    <div id="SpaceUser" class="tabcontent">
+        <p class="pgap">SpaceUser</p>
+        <img class="modimg" src="https://i.imgur.com/lqBlUrt.gif" alt="SpaceUser gif">
+        <p class="pgap">Adds ability to hit space to confirm splitting of stacks and buying from flea.</p>
+    </div>
+
+    <div id="TradingPlayerView" class="tabcontent">
+        <p class="pgap">TradingPlayerView</p>
+        <img-comparison-slider>
+            <img slot="first" src="https://i.imgur.com/jdsVS3u.png">
+            <img slot="second" src="https://i.imgur.com/l9lm3od.png">
+        </img-comparison-slider>
+        <p class="pgap">Removes that stupid ass box that comes up when selling to a trader and you hover a junk box and
+            it spams you saying items cant be sold.</p>
+    </div>
+
+    <div id="WeatherPatcher" class="tabcontent">
+        <p class="pgap">WeatherDebugMode</p>
+        <img-comparison-slider>
+            <img slot="first" src="https://i.imgur.com/ir7lGm7.png">
+            <img slot="second" src="https://i.imgur.com/B9wCtBF.png">
+        </img-comparison-slider>
+        <p class="pgap">FogRemover</p>
+        <img-comparison-slider>
+            <img slot="first" src="https://i.imgur.com/ENfhBEQ.png">
+            <img slot="second" src="https://i.imgur.com/HknznHs.png">
+        </img-comparison-slider>
+        <p class="pgap">WeatherPatcher is split into two.</p>
+        <p class="pgap">FogRemover - on/off (removes all fog) - including scopes.</p>
+        <p class="pgap">WeatherDebugMode - on/off (makes weather sunny).</p>
+    </div>
+
+    <div id="PainkillerDesat" class="tabcontent">
+        <p class="pgap">PainkillerDesat</p>
+        <img-comparison-slider>
+            <img slot="first" src="https://i.imgur.com/7rKEDRz.png">
+            <img slot="second" src="https://i.imgur.com/rJ0cDkG.png">
+        </img-comparison-slider>
+        <p class="pgap">Removes all effects with taking painkillers, goldenbalm wiggle effect, desaturation, radial
+            blur.</p>
+    </div>
+
+    <div id="AlarmReplacer" class="tabcontent">
+        <p class="pgap">AlarmReplacer</p>
+        <iframe src="https://www.youtube.com/embed/lIkfWrlpju8" title="" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p class="pgap">Gives you the ability to replace the alarm with a sound of your choice.</p>
+        <p class="pgap">Place sound file you want to use in the Bepinex/plugins/CWX/Sounds folder (Currently only supports .WAV files)</p>
+        <p class="pgap">MUSE BE ENABLED BEFORE ENTERING RAID</p>
+    </div>
+
+</div>
+
+<div class="modbox">
+    <p class="pgap modheader" style="text-decoration: underline;">HOW TO INSTALL</p>
+    <img class="modimg" src="https://i.imgur.com/mZ1aLrW.gif" alt="Install Gif">
+</div>
+
+<div class="modbox">
+    <p class="pgap modheader" style="text-decoration: underline;">LICENSE</p>
+    <p class="pgap">License allows anyone to use the code, just give credit is all I ask.</p>
+</div>
+
+<div class="modbox">
+    <p class="pgap modheader" style="text-decoration: underline;">TODO:</p>
+    <p class="pgap">Look into other ways to activate and deactivate gameobjects to avoid stutter.</p>
+    <p class="pgap">Fix up botmonitor. (use nookies)</p>
+</div>
+
+<div class="modbox">
+    <p class="pgap modheader" style="text-decoration: underline;">SUPPORT</p>
+    <p class="pgap">If you would like to support me, please consider my Ko-Fi Link:</p>
+    <a href="https://ko-fi.com/cwxdev">Ko-Fi link for CWX</a>
+</div>
+
+<script>
+    // This is 100% GPT code, im too lazy :)
+    function openTab(evt, tabName) {
+        // Declare all variables
+        let i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablink" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Set the default open tab
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".tablink").click();
+    });
+
+    // Get rid of ugly teaser section
+    let teaser = document.getElementsByClassName("filebaseFileTeaser");
+    for (let i = 0; i < teaser.length; i++) {
+        teaser[i].style.display = "none";
+    }
+
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
