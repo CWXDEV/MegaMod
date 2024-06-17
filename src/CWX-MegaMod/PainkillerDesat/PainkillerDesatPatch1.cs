@@ -12,21 +12,19 @@ namespace CWX_MegaMod.PainkillerDesat
         }
 
         [PatchPrefix] // removes the sharpen/desat effect from some painkillers
-        public static bool PatchPrefix(bool desaturateProvider, CC_Sharpen ___cc_Sharpen_0)
+        public static bool PatchPrefix(ref CC_Sharpen ___cc_Sharpen_0)
         {
             if (!MegaMod.PainkillerDesat.Value)
             {
                 return true;
             }
 
-            if (desaturateProvider)
-            {
-                ___cc_Sharpen_0.DesaturateEffectSettingsProvider.Radius = 0f;
-            }
-            else
-            {
-                ___cc_Sharpen_0.Radius = 0f;
-            }
+            ___cc_Sharpen_0.DesaturateEffectSettingsProvider.MaskDesaturate = 0f;
+            ___cc_Sharpen_0.MaskDesaturate = 0f;
+            ___cc_Sharpen_0.DesaturateEffectSettingsProvider.Radius = 1f;
+            ___cc_Sharpen_0.Radius = 1f;
+            ___cc_Sharpen_0.DesaturateEffectSettingsProvider.RadiusFalloff = 0.425f;
+            ___cc_Sharpen_0.RadiusFalloff = 0.425f;
 
             return false; // dont do method
         }

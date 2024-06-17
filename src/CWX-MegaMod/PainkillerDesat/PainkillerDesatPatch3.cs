@@ -12,7 +12,7 @@ namespace CWX_MegaMod.PainkillerDesat
         }
 
         [PatchPrefix] // removes the wiggle effect from some painkillers
-        public static bool PatchPrefix(CC_Wiggle ___cc_Wiggle_0)
+        public static bool PatchPrefix(ref CC_Wiggle ___cc_Wiggle_0)
         {
             if (!MegaMod.PainkillerDesat.Value)
             {

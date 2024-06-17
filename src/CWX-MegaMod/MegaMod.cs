@@ -1,7 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
-using CWX_MegaMod.BackpackReload;
 using CWX_MegaMod.Config;
 using CWX_MegaMod.InventoryViewer;
 using CWX_MegaMod.PainkillerDesat;
@@ -41,6 +40,7 @@ namespace CWX_MegaMod
 			new PainkillerDesatScript1().Enable();
 			new PainkillerDesatScript2().Enable();
 			new PainkillerDesatScript3().Enable();
+			new PainkillerDesatScript4().Enable();
 			new WeatherPatcherScopePatch().Enable();
 		}
 
