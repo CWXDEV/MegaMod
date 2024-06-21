@@ -21,17 +21,23 @@ namespace CWX_MegaMod.WeatherPatcher
                 WeatherPatcherScript.ScopeScattering = __instance.gameObject.GetComponent<TOD_Scattering>();
                 WeatherPatcherScript.ScopeMboit = __instance.gameObject.GetComponent<MBOIT_Scattering>();
 
-                if (WeatherPatcherScript.ScopeGlobalFog != null &&
-                    WeatherPatcherScript.ScopeScattering != null &&
-                    WeatherPatcherScript.ScopeMboit != null)
-                {
-                    WeatherPatcherScript.ScopeRunOnce = true;
-                }
+                WeatherPatcherScript.ScopeRunOnce = true;
             }
 
-            WeatherPatcherScript.ScopeGlobalFog.enabled = !MegaMod.FogRemover.Value;
-            WeatherPatcherScript.ScopeScattering.enabled = !MegaMod.FogRemover.Value;
-            WeatherPatcherScript.ScopeMboit.enabled = !MegaMod.FogRemover.Value;
+            if (WeatherPatcherScript.ScopeGlobalFog != null)
+            {
+                WeatherPatcherScript.ScopeGlobalFog.enabled = !MegaMod.FogRemover.Value;
+            }
+
+            if (WeatherPatcherScript.ScopeScattering != null)
+            {
+                WeatherPatcherScript.ScopeScattering.enabled = !MegaMod.FogRemover.Value;
+            }
+
+            if (WeatherPatcherScript.ScopeMboit != null)
+            {
+                WeatherPatcherScript.ScopeMboit.enabled = !MegaMod.FogRemover.Value;
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ using CWX_MegaMod.WeatherPatcher;
 
 namespace CWX_MegaMod
 {
-	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.2.0")]
+	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.2.1")]
 	public class MegaMod : BaseUnityPlugin
 	{
 		internal new static ManualLogSource Logger { get; private set; }
