@@ -127,6 +127,10 @@
         padding: 0;
         margin: 0;
     }
+
+    .modbox.noborder {
+        border: none;
+    }
 </style>
 
 <div class="modbox">
@@ -134,10 +138,9 @@
     <p class="pgap">I got fed up with maintaining multiple mods, so I combined them into one.</p>
     <p class="pgap" style="color: green; text-decoration: underline;">They all start disabled</p>
     <p class="pgap modheader" style="color: green;">Use the F12 config menu to turn things on/off and configure.</p>
-    <p class="pgap">Placeholder images will be updated</p>
 </div>
 
-<div class="modbox">
+<div class="modbox noborder">
 
     <div class="tabs">
         <button class="tablink active" onclick="openTab(event, 'BushWhacker')">BushWhacker</button>
@@ -239,6 +242,7 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <p class="pgap">Gives you the ability to replace the alarm with a sound of your choice.</p>
+        <p class="pgap">The mod will load all .WAV files in the below Directory, then on raid start it will choose one randomly to use.</p>
         <p class="pgap">Place sound file you want to use in the Bepinex/plugins/CWX/Sounds folder (Currently only supports .WAV files)</p>
         <p class="pgap">MUSE BE ENABLED BEFORE ENTERING RAID</p>
     </div>
