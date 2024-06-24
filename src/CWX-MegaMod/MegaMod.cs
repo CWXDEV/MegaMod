@@ -7,6 +7,7 @@ using CWX_MegaMod.PainkillerDesat;
 using CWX_MegaMod.SpaceUser;
 using CWX_MegaMod.TradingPlayerView;
 using CWX_MegaMod.WeatherPatcher;
+using EFT.UI;
 
 namespace CWX_MegaMod
 {
@@ -61,5 +62,32 @@ namespace CWX_MegaMod
 
 			MasterKeyToUse = Config.Bind("MasterKey", "MasterKeyToUse", EMasterKeys.Yellow, new ConfigDescription("This will be set to all unlockable doors", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 		}
+
+		public static void LogToScreen(string message = "", EMessageType eMessageType = EMessageType.info)
+		{
+			switch (eMessageType)
+			{
+				case EMessageType.warning:
+					ConsoleScreen.LogWarning("[CWX-MegaMod] " + message);
+					Logger.LogWarning("[CWX-MegaMod] " + message);
+					break;
+				case EMessageType.error:
+					ConsoleScreen.LogError("[CWX-MegaMod] " + message);
+					Logger.LogError("[CWX-MegaMod] " + message);
+					break;
+				case EMessageType.info:
+				default:
+					ConsoleScreen.Log("[CWX-MegaMod] " + message);
+					Logger.LogDebug("[CWX-MegaMod] " + message);
+					break;
+			}
+		}
+	}
+
+	public enum EMessageType
+	{
+		warning,
+		error,
+		info
 	}
 }

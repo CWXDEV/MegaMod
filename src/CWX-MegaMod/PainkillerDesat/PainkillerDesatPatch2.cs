@@ -19,12 +19,19 @@ namespace CWX_MegaMod.PainkillerDesat
                 return true;
             }
 
-            ___cc_Sharpen_0.DesaturateEffectSettingsProvider.MaskDesaturate = 0f;
-            ___cc_Sharpen_0.MaskDesaturate = 0f;
-            ___cc_Sharpen_0.DesaturateEffectSettingsProvider.Radius = 1f;
-            ___cc_Sharpen_0.Radius = 1f;
-            ___cc_Sharpen_0.DesaturateEffectSettingsProvider.RadiusFalloff = 0.425f;
-            ___cc_Sharpen_0.RadiusFalloff = 0.425f;
+            if (___cc_Sharpen_0 != null)
+            {
+                ___cc_Sharpen_0.MaskDesaturate = 0f;
+                ___cc_Sharpen_0.Radius = 1f;
+                ___cc_Sharpen_0.RadiusFalloff = 0.425f;
+
+                if (___cc_Sharpen_0.DesaturateEffectSettingsProvider != null)
+                {
+                    ___cc_Sharpen_0.DesaturateEffectSettingsProvider.MaskDesaturate = 0f;
+                    ___cc_Sharpen_0.DesaturateEffectSettingsProvider.Radius = 1f;
+                    ___cc_Sharpen_0.DesaturateEffectSettingsProvider.RadiusFalloff = 0.425f;
+                }
+            }
 
             return false; // dont do method
         }

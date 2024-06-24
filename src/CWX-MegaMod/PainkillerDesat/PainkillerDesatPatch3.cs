@@ -19,7 +19,10 @@ namespace CWX_MegaMod.PainkillerDesat
                 return true;
             }
 
-            ___cc_Wiggle_0.enabled = false;
+            if (___cc_Wiggle_0 != null)
+            {
+                ___cc_Wiggle_0.enabled = false;
+            }
 
             return false; // dont do method
         }

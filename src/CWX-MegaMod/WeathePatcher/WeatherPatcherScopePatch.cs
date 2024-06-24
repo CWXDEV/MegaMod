@@ -21,6 +21,10 @@ namespace CWX_MegaMod.WeatherPatcher
                 WeatherPatcherScript.ScopeScattering = __instance.gameObject.GetComponent<TOD_Scattering>();
                 WeatherPatcherScript.ScopeMboit = __instance.gameObject.GetComponent<MBOIT_Scattering>();
 
+                MegaMod.LogToScreen($"ScopeGlobalFog was null? {WeatherPatcherScript.ScopeGlobalFog == null}");
+                MegaMod.LogToScreen($"ScopeScattering was null? {WeatherPatcherScript.ScopeScattering == null}");
+                MegaMod.LogToScreen($"ScopeMboit was null? {WeatherPatcherScript.ScopeMboit == null}");
+
                 WeatherPatcherScript.ScopeRunOnce = true;
             }
 
