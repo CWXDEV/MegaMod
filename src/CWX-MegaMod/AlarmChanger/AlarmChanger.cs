@@ -50,9 +50,11 @@ namespace CWX_MegaMod.AlarmChanger
                 return;
             }
 
+            var clip = _clips[UnityEngine.Random.Range(0, _clips.Count)];
+
             foreach (var sub in subs)
             {
-                sub.Sounds.FirstOrDefault().Clip = _clips[UnityEngine.Random.Range(0, _clips.Count)];
+                sub.Sounds.FirstOrDefault().Clip = clip;
             }
         }
 
