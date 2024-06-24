@@ -11,7 +11,7 @@ using EFT.UI;
 
 namespace CWX_MegaMod
 {
-	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.2.3")]
+	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.2.4")]
 	public class MegaMod : BaseUnityPlugin
 	{
 		internal new static ManualLogSource Logger { get; private set; }
