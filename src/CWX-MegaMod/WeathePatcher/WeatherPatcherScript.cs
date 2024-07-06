@@ -8,11 +8,9 @@ namespace CWX_MegaMod.WeatherPatcher
         private CameraClass camera;
         private WeatherController weatherController;
         private float debugFogFloat = 0f;
-        private CustomGlobalFog globalFog = null;
         private TOD_Scattering scattering = null;
         private MBOIT_Scattering mboit = null;
         public static bool ScopeRunOnce = false;
-        public static CustomGlobalFog ScopeGlobalFog = null;
         public static TOD_Scattering ScopeScattering = null;
         public static MBOIT_Scattering ScopeMboit = null;
 
@@ -28,7 +26,6 @@ namespace CWX_MegaMod.WeatherPatcher
 
             if (camera.Camera != null)
             {
-                globalFog = camera.Camera.gameObject.GetComponentInChildren<CustomGlobalFog>();
                 scattering = camera.Camera.gameObject.GetComponentInChildren<TOD_Scattering>();
                 mboit = camera.Camera.gameObject.GetComponentInChildren<MBOIT_Scattering>();
             }
@@ -36,14 +33,6 @@ namespace CWX_MegaMod.WeatherPatcher
 
         public void StartTask()
         {
-            // fog related
-
-
-            if (globalFog != null)
-            {
-                globalFog.enabled = !MegaMod.FogRemover.Value;
-            }
-
             if (scattering != null)
             {
                 scattering.enabled = !MegaMod.FogRemover.Value;
@@ -80,7 +69,6 @@ namespace CWX_MegaMod.WeatherPatcher
         public void OnDestroy()
         {
             ScopeRunOnce = false;
-            ScopeGlobalFog = null;
             ScopeScattering = null;
             ScopeMboit = null;
         }

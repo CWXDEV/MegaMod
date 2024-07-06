@@ -11,7 +11,7 @@ using EFT.UI;
 
 namespace CWX_MegaMod
 {
-	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.2.4")]
+	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.3.0")]
 	public class MegaMod : BaseUnityPlugin
 	{
 		internal new static ManualLogSource Logger { get; private set; }
@@ -27,6 +27,10 @@ namespace CWX_MegaMod
 		internal static ConfigEntry<bool> FogRemover { get; private set; }
 		internal static ConfigEntry<bool> WeatherDebug { get; private set; }
 		internal static ConfigEntry<bool> ReserveAlarmChanger { get; private set; }
+		// internal static ConfigEntry<bool> ChadMode { get; private set; }
+		// internal static ConfigEntry<bool> ChadModeStamJiggle { get; private set; }
+		// internal static ConfigEntry<bool> ChadModeCamRock { get; private set; }
+		// internal static ConfigEntry<bool> ChadModeBreathing { get; private set; }
 
 		public void Awake()
 		{
@@ -48,6 +52,7 @@ namespace CWX_MegaMod
 		private void InitConfig()
 		{
 			// Higher order number comes first
+			//ChadMode = Config.Bind("All Mods", "ChadMode - On/Off", false, new ConfigDescription("Enable ChadMode - Sets stamina drain to 0", tags: new ConfigurationManagerAttributes() { Order = 12 }));
 			ReserveAlarmChanger = Config.Bind("All Mods", "ReserveAlarmChanger - On/Off", false, new ConfigDescription("Enable Reserve Alarm Changer - changes alarm sound to file on plugin folder (ONLY RUNS ON RAID START)", tags: new ConfigurationManagerAttributes() { Order = 11 }));
 			BushWhacker = Config.Bind("All Mods", "BushWhacker - On/Off", false, new ConfigDescription("Enable BushWhacker - removes slowdown from bushes", tags: new ConfigurationManagerAttributes() { Order = 10 }));
 			GrassCutter = Config.Bind("All Mods", "GrassCutter - On/Off", false, new ConfigDescription("Enable GrassCutter - removes grass", tags: new ConfigurationManagerAttributes() { Order = 9 }));
@@ -61,6 +66,10 @@ namespace CWX_MegaMod
 			FogRemover = Config.Bind("All Mods", "FogRemover - On/Off", false, new ConfigDescription("Enable FogRemover - Removes fog", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 
 			MasterKeyToUse = Config.Bind("MasterKey", "MasterKeyToUse", EMasterKeys.Yellow, new ConfigDescription("This will be set to all unlockable doors", tags: new ConfigurationManagerAttributes() { Order = 1 }));
+
+			//ChadModeStamJiggle = Config.Bind("ChadMode", "Disable Exhaustion Jiggle", false, new ConfigDescription("Disable Exhaustion Jiggle", tags: new ConfigurationManagerAttributes() { Order = 3 }));
+			//ChadModeCamRock = Config.Bind("ChadMode", "Disable Exhaustion CameraRock", false, new ConfigDescription("Disable Exhaustion CameraRock", tags: new ConfigurationManagerAttributes() { Order = 2 }));
+			//ChadModeBreathing = Config.Bind("ChadMode", "Disable Exhaustion Breathing", false, new ConfigDescription("Disable Exhaustion Breathing", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 		}
 
 		public static void LogToScreen(string message = "", EMessageType eMessageType = EMessageType.info)

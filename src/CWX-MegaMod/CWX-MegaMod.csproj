@@ -9,11 +9,11 @@
         <Reference Include="0Harmony">
             <HintPath>..\..\shared\0Harmony.dll</HintPath>
         </Reference>
-        <Reference Include="Aki.Common">
-            <HintPath>..\..\shared\Aki.Common.dll</HintPath>
+        <Reference Include="spt-Common">
+            <HintPath>..\..\shared\spt-Common.dll</HintPath>
         </Reference>
-        <Reference Include="Aki.Reflection">
-            <HintPath>..\..\shared\Aki.Reflection.dll</HintPath>
+        <Reference Include="spt-Reflection">
+            <HintPath>..\..\shared\spt-Reflection.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
             <HintPath>..\..\shared\Assembly-CSharp.dll</HintPath>

@@ -1,6 +1,7 @@
 ﻿using Comfort.Common;
 using CWX_MegaMod.AlarmChanger;
 using CWX_MegaMod.BushWhacker;
+using CWX_MegaMod.ChadMode;
 using CWX_MegaMod.EnvironmentEnjoyer;
 using CWX_MegaMod.GrassCutter;
 using CWX_MegaMod.MasterKey;
@@ -21,6 +22,7 @@ namespace CWX_MegaMod
         public EnvironmentEnjoyerScript _environmentEnjoyerScript;
         public WeatherPatcherScript _weatherPatcherScript;
         public AlarmChangerScript _alarmChangerScript;
+        // public StaminaScript _staminaScript;
 
         private void Awake()
         {
@@ -61,6 +63,7 @@ namespace CWX_MegaMod
             _environmentEnjoyerScript = _gameWorld.gameObject.AddComponent<EnvironmentEnjoyerScript>();
             _weatherPatcherScript = _gameWorld.gameObject.AddComponent<WeatherPatcherScript>();
             _alarmChangerScript = _gameWorld.gameObject.AddComponent<AlarmChangerScript>();
+            // _staminaScript = _gameWorld.gameObject.AddComponent<StaminaScript>();
         }
 
         private void RunFirstTime()
@@ -70,6 +73,7 @@ namespace CWX_MegaMod
             _masterKeyScript.StartTask();
             _environmentEnjoyerScript.StartTask();
             _weatherPatcherScript.StartTask();
+            // _staminaScript.StartTask();
         }
 
         private void SetupMegaModEvents()
@@ -81,6 +85,7 @@ namespace CWX_MegaMod
             MegaMod.EnvironmentEnjoyer.SettingChanged += (a, b) => _environmentEnjoyerScript.StartTask();
             MegaMod.FogRemover.SettingChanged += (a, b) => _weatherPatcherScript.StartTask();
             MegaMod.WeatherDebug.SettingChanged += (a, b) => _weatherPatcherScript.StartTask();
+            // MegaMod.ChadMode.SettingChanged += (a, b) => _staminaScript.StartTask();
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using Aki.Reflection.Patching;
-using EFT.InventoryLogic;
+﻿using EFT.InventoryLogic;
 using HarmonyLib;
 using System.Reflection;
+using SPT.Reflection.Patching;
 
 namespace CWX_MegaMod.InventoryViewer
 {

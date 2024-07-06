@@ -1,5 +1,5 @@
 using System.Reflection;
-using Aki.Reflection.Patching;
+using SPT.Reflection.Patching;
 using HarmonyLib;
 
 namespace CWX_MegaMod.PainkillerDesat
@@ -8,7 +8,7 @@ namespace CWX_MegaMod.PainkillerDesat
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(EffectsController.Class568), nameof(EffectsController.Class568.Toggle));
+            return AccessTools.Method(typeof(EffectsController.Class578), nameof(EffectsController.Class578.Toggle));
         }
 
         [PatchPrefix] // removes the double vision effect from some painkillers

@@ -1,5 +1,5 @@
 using System.Reflection;
-using Aki.Reflection.Patching;
+using SPT.Reflection.Patching;
 using HarmonyLib;
 
 namespace CWX_MegaMod.PainkillerDesat
@@ -8,7 +8,7 @@ namespace CWX_MegaMod.PainkillerDesat
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(EffectsController.Class577), nameof(EffectsController.Class577.Toggle));
+            return AccessTools.Method(typeof(EffectsController.Class587), nameof(EffectsController.Class587.Toggle));
         }
 
         [PatchPrefix] // removes the wiggle effect from some painkillers

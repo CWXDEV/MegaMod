@@ -1,5 +1,5 @@
 using System.Reflection;
-using Aki.Reflection.Patching;
+using SPT.Reflection.Patching;
 using HarmonyLib;
 
 namespace CWX_MegaMod.PainkillerDesat
@@ -8,7 +8,7 @@ namespace CWX_MegaMod.PainkillerDesat
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(EffectsController.Class572), nameof(EffectsController.Class572.method_1));
+            return AccessTools.Method(typeof(EffectsController.Class582), nameof(EffectsController.Class582.method_1));
         }
 
         [PatchPrefix] // removes the sharpen/desat effect from some painkillers
