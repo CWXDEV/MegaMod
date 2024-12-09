@@ -21,7 +21,7 @@ namespace CWX_MegaMod.WeatherPatcher
 
             if (weatherController != null)
             {
-                debugFogFloat = weatherController.WeatherDebug.Fog;
+                debugFogFloat = weatherController.WeatherDebug.Fog; // TODO: look for a way to disable this error as Jetbrains still have not fixed it
             }
 
             if (camera.Camera != null)

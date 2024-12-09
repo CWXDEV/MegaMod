@@ -9,11 +9,11 @@ namespace CWX_MegaMod.InventoryViewer
 	{
 		protected override MethodBase GetTargetMethod()
 		{
-			return AccessTools.Method(typeof(InventoryControllerClass), nameof(InventoryControllerClass.IsAllowedToSeeSlot));
+			return AccessTools.Method(typeof(InventoryController), nameof(InventoryController.IsAllowedToSeeSlot));
 		}
 
 		[PatchPrefix]
-		public static bool PatchPrefix(InventoryControllerClass __instance, Slot slot, EquipmentSlot slotName, ref bool __result)
+		public static bool PatchPrefix(InventoryController __instance, Slot slot, EquipmentSlot slotName, ref bool __result)
 		{
 			if (MegaMod.InventoryViewer.Value)
 			{

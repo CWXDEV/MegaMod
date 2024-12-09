@@ -14,12 +14,12 @@ namespace CWX_MegaMod.GrassCutter
 
         private void Awake()
         {
-            GetObjects();
+            _ = GetObjects();
         }
 
         public void StartTask()
         {
-            ChangeObjects();
+            _ = ChangeObjects();
         }
 
         private async Task GetObjects()

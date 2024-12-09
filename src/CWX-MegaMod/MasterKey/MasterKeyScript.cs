@@ -22,12 +22,12 @@ namespace CWX_MegaMod.MasterKey
 
         private void Awake()
         {
-            GetObjects();
+            _ = GetObjects();
         }
 
         public void StartTask()
         {
-            ChangeObjects();
+            _ = ChangeObjects();
         }
 
         private async Task GetObjects()

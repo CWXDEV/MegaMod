@@ -19,12 +19,12 @@ namespace CWX_MegaMod.TradingPlayerView
         {
             if (MegaMod.TradingPlayerView.Value == true)
             {
-                string text = Singleton<ItemFactory>.Instance.BriefItemName(__instance.Item, __instance.Item.Name.Localized(null));
+                string text = Singleton<ItemFactoryClass>.Instance.BriefItemName(__instance.Item, __instance.Item.Name.Localized(null));
 
                 var itemView = (ItemView)__instance;
 
                 var context = (ItemUiContext)AccessTools.Field(itemView.GetType(), "ItemUiContext").GetValue(itemView);
-                context.Tooltip.Show(text, null, 0f, null, true);
+                context.Tooltip.Show(text, null, 0f, null); // context.Tooltip.Show(text, null, 0f, null, true);
 
                 return false;
             }

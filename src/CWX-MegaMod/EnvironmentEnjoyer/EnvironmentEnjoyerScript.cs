@@ -18,12 +18,12 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         {
             _gameWorld = Singleton<GameWorld>.Instance;
 
-            GetGameObjects();
+            _ = GetGameObjects();
         }
 
         public void StartTask()
         {
-            ChangeObjects();
+            _ = ChangeObjects();
         }
 
         private async Task ChangeObjects()

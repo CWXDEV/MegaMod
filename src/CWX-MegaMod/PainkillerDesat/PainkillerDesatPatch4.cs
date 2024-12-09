@@ -8,7 +8,7 @@ namespace CWX_MegaMod.PainkillerDesat
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(EffectsController.Class578), nameof(EffectsController.Class578.Toggle));
+            return AccessTools.Method(typeof(EffectsController.Class640), nameof(EffectsController.Class640.Toggle));
         }
 
         [PatchPrefix] // removes the double vision effect from some painkillers

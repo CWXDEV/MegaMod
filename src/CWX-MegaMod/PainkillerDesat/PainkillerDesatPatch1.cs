@@ -8,7 +8,7 @@ namespace CWX_MegaMod.PainkillerDesat
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(EffectsController.Class582), nameof(EffectsController.Class582.method_2));
+            return AccessTools.Method(typeof(EffectsController.Class644), nameof(EffectsController.Class644.method_2));
         }
 
         [PatchPrefix] // removes the sharpen/desat effect from some painkillers
