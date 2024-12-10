@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using SPT.Reflection.Patching;
 using EFT.CameraControl;
@@ -15,25 +16,30 @@ namespace CWX_MegaMod.WeatherPatcher
         [PatchPostfix]
         public static void PatchPostfix(ref OpticComponentUpdater __instance)
         {
-            if (!WeatherPatcherScript.ScopeRunOnce)
+            try
             {
-                WeatherPatcherScript.ScopeScattering = __instance.gameObject.GetComponent<TOD_Scattering>();
-                WeatherPatcherScript.ScopeMboit = __instance.gameObject.GetComponent<MBOIT_Scattering>();
+                if (!WeatherPatcherScript.ScopeRunOnce)
+                {
+                    WeatherPatcherScript.ScopeScattering = __instance.gameObject.GetComponent<TOD_Scattering>();
+                    WeatherPatcherScript.ScopeMboit = __instance.gameObject.GetComponent<MBOIT_Scattering>();
 
-                MegaMod.LogToScreen($"ScopeScattering was null? {WeatherPatcherScript.ScopeScattering == null}");
-                MegaMod.LogToScreen($"ScopeMboit was null? {WeatherPatcherScript.ScopeMboit == null}");
+                    WeatherPatcherScript.ScopeRunOnce = true;
+                }
 
-                WeatherPatcherScript.ScopeRunOnce = true;
+                if (WeatherPatcherScript.ScopeScattering != null)
+                {
+                    WeatherPatcherScript.ScopeScattering.enabled = !MegaMod.FogRemover.Value;
+                }
+
+                if (WeatherPatcherScript.ScopeMboit != null)
+                {
+                    WeatherPatcherScript.ScopeMboit.enabled = !MegaMod.FogRemover.Value;
+                }
             }
-
-            if (WeatherPatcherScript.ScopeScattering != null)
+            catch (Exception e)
             {
-                WeatherPatcherScript.ScopeScattering.enabled = !MegaMod.FogRemover.Value;
-            }
-
-            if (WeatherPatcherScript.ScopeMboit != null)
-            {
-                WeatherPatcherScript.ScopeMboit.enabled = !MegaMod.FogRemover.Value;
+                MegaMod.LogToScreen("Exception in weatherscope patchpostfix", EMessageType.Error);
+                MegaMod.LogToScreen(e.Message, EMessageType.Error);
             }
         }
     }

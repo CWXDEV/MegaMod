@@ -1,3 +1,4 @@
+using System;
 using EFT.Weather;
 using UnityEngine;
 
@@ -16,53 +17,69 @@ namespace CWX_MegaMod.WeatherPatcher
 
         private void Awake()
         {
-            camera = CameraClass.Instance;
-            weatherController = WeatherController.Instance;
-
-            if (weatherController != null)
+            try
             {
-                debugFogFloat = weatherController.WeatherDebug.Fog; // TODO: look for a way to disable this error as Jetbrains still have not fixed it
+                camera = CameraClass.Instance;
+                weatherController = WeatherController.Instance;
+
+                if (weatherController != null)
+                {
+                    debugFogFloat = weatherController.WeatherDebug.Fog; // TODO: look for a way to disable this error as Jetbrains still have not fixed it
+                }
+
+                if (camera.Camera != null)
+                {
+                    scattering = camera.Camera.gameObject.GetComponentInChildren<TOD_Scattering>();
+                    mboit = camera.Camera.gameObject.GetComponentInChildren<MBOIT_Scattering>();
+                }
             }
-
-            if (camera.Camera != null)
+            catch (Exception e)
             {
-                scattering = camera.Camera.gameObject.GetComponentInChildren<TOD_Scattering>();
-                mboit = camera.Camera.gameObject.GetComponentInChildren<MBOIT_Scattering>();
+                MegaMod.LogToScreen("Exception on weatherpatchscript awake", EMessageType.Error);
+                MegaMod.LogToScreen(e.Message, EMessageType.Error);
             }
         }
 
         public void StartTask()
         {
-            if (scattering != null)
+            try
             {
-                scattering.enabled = !MegaMod.FogRemover.Value;
+                if (scattering != null)
+                {
+                    scattering.enabled = !MegaMod.FogRemover.Value;
+                }
+
+                if (mboit != null)
+                {
+                    mboit.enabled = !MegaMod.FogRemover.Value;
+                }
+
+                if (weatherController != null)
+                {
+                    if (MegaMod.FogRemover.Value)
+                    {
+                        weatherController.WeatherDebug.Fog = 0f;
+                    }
+                    else
+                    {
+                        weatherController.WeatherDebug.Fog = debugFogFloat;
+                    }
+
+                    // debug mode related
+                    if (MegaMod.WeatherDebug.Value)
+                    {
+                        weatherController.WeatherDebug.Enabled = true;
+                    }
+                    else
+                    {
+                        weatherController.WeatherDebug.Enabled = false;
+                    }
+                }
             }
-
-            if (mboit != null)
+            catch (Exception e)
             {
-                mboit.enabled = !MegaMod.FogRemover.Value;
-            }
-
-            if (weatherController != null)
-            {
-                if (MegaMod.FogRemover.Value)
-                {
-                    weatherController.WeatherDebug.Fog = 0f;
-                }
-                else
-                {
-                    weatherController.WeatherDebug.Fog = debugFogFloat;
-                }
-
-                // debug mode related
-                if (MegaMod.WeatherDebug.Value)
-                {
-                    weatherController.WeatherDebug.Enabled = true;
-                }
-                else
-                {
-                    weatherController.WeatherDebug.Enabled = false;
-                }
+                MegaMod.LogToScreen("Exception on weatherpatchscript start task", EMessageType.Error);
+                MegaMod.LogToScreen(e.Message, EMessageType.Error);
             }
         }
 
