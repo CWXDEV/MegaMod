@@ -10,7 +10,7 @@ namespace CWX_MegaMod.BotMonitor.Models
         PerZoneTotal = 1,
         [Description("Per Zone Total With Bot List")]
         PerZoneTotalWithList = 2,
-        [Description("Per Zone Total With Bot List and delayed spawn numbers")]
+        [Description("Per Zone Bot List and delayed numbers")]
         PerZoneTotalWithListAndDelayedSpawn = 3,
     }
 }
