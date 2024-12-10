@@ -1,6 +1,6 @@
 I got fed up with multiple mods, so I combined them into one.
 
-works with 3.8.3 for now. (will not work for 3.9.0)
+works with 3.10.
 
 - BushWhacker
 - GrassCutter
@@ -11,7 +11,7 @@ works with 3.8.3 for now. (will not work for 3.9.0)
 - TradingPlayerView - needs a fancy name
 - PainkillerDesat
 - WeatherPatcher
-- BotMonitor - Disabled for now
+- BotMonitor
 
 ## BushWhacker
 - Disables collision with bushes, so you can run through them like the good old days
@@ -46,6 +46,4 @@ works with 3.8.3 for now. (will not work for 3.9.0)
 - License allows anyone to use the code, just give credit is all I ask.
 
 ## TODO:
-- look into other ways to activate and deactivate gameobjects to avoid stutter.
-- fix up botmonitor.
-- fix fog with scope
+
