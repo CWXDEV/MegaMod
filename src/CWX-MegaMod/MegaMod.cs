@@ -8,11 +8,13 @@ using CWX_MegaMod.PainkillerDesat;
 using CWX_MegaMod.SpaceUser;
 using CWX_MegaMod.TradingPlayerView;
 using CWX_MegaMod.WeatherPatcher;
+using EFT.Communications;
 using EFT.UI;
+using UnityEngine;
 
 namespace CWX_MegaMod
 {
-	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.3.2")]
+	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.3.3")]
 	public class MegaMod : BaseUnityPlugin
 	{
 		internal new static ManualLogSource Logger { get; private set; }
@@ -31,8 +33,9 @@ namespace CWX_MegaMod
 		internal static ConfigEntry<bool> BotMonitor { get; private set; }
 		internal static ConfigEntry<EMonitorMode> BotMonitorValue { get; private set; }
 		internal static ConfigEntry<int> BotMonitorFontSize { get; private set; }
-		
-		// internal static ConfigEntry<bool> ChadMode { get; private set; }
+		internal static ConfigEntry<bool> GodMode { get; private set; }
+		// internal static ConfigEntry<bool> UnlimitesStamina { get; private set; }
+		// internal static ConfigEntry<bool> CameraShake { get; private set; }
 		// internal static ConfigEntry<bool> ChadModeStamJiggle { get; private set; }
 		// internal static ConfigEntry<bool> ChadModeCamRock { get; private set; }
 		// internal static ConfigEntry<bool> ChadModeBreathing { get; private set; }
@@ -68,14 +71,16 @@ namespace CWX_MegaMod
 			PainkillerDesat = Config.Bind("1- All Mods", "PainkillerDesat - On/Off", false, new ConfigDescription("Enable PainkillerDesat - Removes effects from taking painkillers", tags: new ConfigurationManagerAttributes() { Order = 3 }));
 			WeatherDebug = Config.Bind("1- All Mods", "WeatherDebugMode - On/Off", false, new ConfigDescription("Enable WeatherDebugMode - Makes it super sunny", tags: new ConfigurationManagerAttributes() { Order = 2 }));
 			FogRemover = Config.Bind("1- All Mods", "FogRemover - On/Off", false, new ConfigDescription("Enable FogRemover - Removes fog", tags: new ConfigurationManagerAttributes() { Order = 1 }));
-			//ChadMode = Config.Bind("All Mods", "ChadMode - On/Off", false, new ConfigDescription("Enable ChadMode - Sets stamina drain to 0", tags: new ConfigurationManagerAttributes() { Order = 12 }));
 			
 			// MasterKey Settings
 			MasterKeyToUse = Config.Bind("2- MasterKey", "MasterKeyToUse", EMasterKeys.Yellow, new ConfigDescription("This will be set to all unlockable doors", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 			
 			// Debugging Mods
-			BotMonitor = Config.Bind("3- Debug Mods", "BotMonitor - On/Off", false, new ConfigDescription("Enable BotMonitor - Adds a custom gui for Bot Monitoring", tags: new ConfigurationManagerAttributes() { Order = 12 }));
-			InventoryViewer = Config.Bind("3- Debug Mods", "InventoryViewer - On/Off", false, new ConfigDescription("Enable InventoryViewer - Changes inventory view to show all containers or not", tags: new ConfigurationManagerAttributes() { Order = 2 }));
+			BotMonitor = Config.Bind("3- Debug Mods", "BotMonitor - On/Off", false, new ConfigDescription("Enable BotMonitor - Adds a custom gui for Bot Monitoring", tags: new ConfigurationManagerAttributes() { Order = 5 }));
+			InventoryViewer = Config.Bind("3- Debug Mods", "InventoryViewer - On/Off", false, new ConfigDescription("Enable InventoryViewer - Changes inventory view to show all containers or not", tags: new ConfigurationManagerAttributes() { Order = 4 }));
+			// UnlimitesStamina = Config.Bind("3- Debug Mods", "UnlimitedStamina - On/Off", false, new ConfigDescription("Enable UnlimitedStamina - Changes stamina to not drain", tags: new ConfigurationManagerAttributes() { Order = 3 }));
+			GodMode = Config.Bind("3- Debug Mods", "GodMode - On/Off", false, new ConfigDescription("Enable GodMode - Unable to be killed", tags: new ConfigurationManagerAttributes() { Order = 2 }));
+			// CameraShake = Config.Bind("3- Debug Mods", "CameraShake - On/Off", false, new ConfigDescription("Disable CameraShake - Removes CameraShake", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 			
 			// BotMonitor Settings
 			BotMonitorValue = Config.Bind("4- BotMonitor", "BotMonitorValue", EMonitorMode.Total, new ConfigDescription("This will be set to only show total", tags: new ConfigurationManagerAttributes() { Order = 2 }));
@@ -90,18 +95,33 @@ namespace CWX_MegaMod
 		{
 			switch (eMessageType)
 			{
-				case EMessageType.Warning:
-					ConsoleScreen.LogWarning("[CWX-MegaMod] " + message);
-					Logger.LogWarning("[CWX-MegaMod] " + message);
+				case EMessageType.NotiError:
+					ConsoleScreen.LogError("[CWX-MegaMod Error] " + message);
+					Logger.LogError("[CWX-MegaMod Error] " + message);
+					NotificationManagerClass.DisplayMessageNotification("[CWX-MegaMod Error] " + message, ENotificationDurationType.Default, ENotificationIconType.Alert, Color.red);
+					break;
+				case EMessageType.NotiWarn:
+					ConsoleScreen.LogWarning("[CWX-MegaMod Warning] " + message);
+					Logger.LogWarning("[CWX-MegaMod Warning] " + message);
+					NotificationManagerClass.DisplayMessageNotification("[CWX-MegaMod Warning] " + message, ENotificationDurationType.Default, ENotificationIconType.Default, Color.yellow);
+					break;
+				case EMessageType.NotiInfo:
+					ConsoleScreen.Log("[CWX-MegaMod Info] " + message);
+					Logger.LogDebug("[CWX-MegaMod Info] " + message);
+					NotificationManagerClass.DisplayMessageNotification("[CWX-MegaMod Info] " + message, ENotificationDurationType.Default, ENotificationIconType.Friend, Color.cyan);
 					break;
 				case EMessageType.Error:
-					ConsoleScreen.LogError("[CWX-MegaMod] " + message);
-					Logger.LogError("[CWX-MegaMod] " + message);
+					ConsoleScreen.LogError("[CWX-MegaMod Error] " + message);
+					Logger.LogError("[CWX-MegaMod Error] " + message);
+					break;
+				case EMessageType.Warning:
+					ConsoleScreen.LogWarning("[CWX-MegaMod Warning] " + message);
+					Logger.LogWarning("[CWX-MegaMod Warning] " + message);
 					break;
 				case EMessageType.Info:
 				default:
-					ConsoleScreen.Log("[CWX-MegaMod] " + message);
-					Logger.LogDebug("[CWX-MegaMod] " + message);
+					ConsoleScreen.Log("[CWX-MegaMod Info] " + message);
+					Logger.LogDebug("[CWX-MegaMod Info] " + message);
 					break;
 			}
 		}
@@ -109,8 +129,11 @@ namespace CWX_MegaMod
 
 	public enum EMessageType
 	{
-		Warning,
+		NotiError,
+		NotiWarn,
+		NotiInfo,
 		Error,
+		Warning,
 		Info
 	}
 }

@@ -84,7 +84,7 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         */
         public void GetCustoms()
         {
-            var customs = FindObjectsOfType<GameObject>().Where(x => x.name.Contains("Slice_") && x.name.Contains("_trees")).ToList();
+            var customs = FindObjectsOfType<GameObject>().Where(x => x.name.ToLower().Contains("slice_") && x.name.ToLower().Contains("_trees")).ToList();
 
             foreach (var item in customs)
             {
@@ -103,7 +103,7 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         */
         private void GetWoods()
         {
-            var woods = FindObjectsOfType<GameObject>().Where(x => x.name.Contains("Slice_") && x.name.Contains("_trees")).ToList();
+            var woods = FindObjectsOfType<GameObject>().Where(x => x.name.ToLower().Contains("slice_") && x.name.ToLower().Contains("_trees")).ToList();
 
             foreach (var item in woods)
             {
@@ -124,7 +124,7 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         */
         private void GetGroundZero()
         {
-            var groundzero = FindObjectsOfType<GameObject>().Where(x => x.name.Contains("SBG_Sandbox_") && x.name.Contains("_Plants")).ToList();
+            var groundzero = FindObjectsOfType<GameObject>().Where(x => x.name.ToLower().Contains("sbg_sandbox_") && x.name.ToLower().Contains("_plants")).ToList();
 
             foreach (var item in groundzero)
             {
@@ -157,17 +157,15 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         */
         private void GetShoreline()
         {
-            var shoreline1 = GameObject.Find("SBG_Trees");
-            var shoreline2 = GameObject.Find("SBG_Shoreline_Plants");
+            // or for this one as they are different unlike other maps
+            var shoreline = FindObjectsOfType<GameObject>().Where(x => x.name.ToLower().Contains("sbg_trees") || x.name.ToLower().Contains("sbg_shoreline_plants")).ToList();
 
-            if (shoreline1 != null)
+            foreach (var item in shoreline)
             {
-                TreeBush.Add(shoreline1);
-            }
-
-            if (shoreline2 != null)
-            {
-                TreeBush.Add(shoreline2);
+                if (item != null)
+                {
+                    TreeBush.Add(item);
+                }
             }
         }
 
@@ -176,7 +174,7 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         */
         private void GetReserve()
         {
-            var reserve = FindObjectsOfType<GameObject>().Where(x => x.name.Contains("Slice_") && x.name.Contains("_trees")).ToList();
+            var reserve = FindObjectsOfType<GameObject>().Where(x => x.name.ToLower().Contains("slice_") && x.name.ToLower().Contains("_trees")).ToList();
 
             foreach (var item in reserve)
             {
@@ -197,7 +195,7 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         */
         private void GetStreets()
         {
-            var streets = FindObjectsOfType<GameObject>().Where(x => x.name.Contains("_PLANTS")).ToList();
+            var streets = FindObjectsOfType<GameObject>().Where(x => x.name.ToLower().Contains("_plants")).ToList();
 
             foreach (var item in streets)
             {
@@ -258,11 +256,14 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         */
         private void GetLighthouse()
         {
-            var lighthouse1 = GameObject.Find("SBG_Trees");
+            var lighthouse = FindObjectsOfType<GameObject>().Where(x => x.name.ToLower().Contains("sbg_trees")).ToList();
 
-            if (lighthouse1 != null)
+            foreach (var item in lighthouse)
             {
-                TreeBush.Add(lighthouse1);
+                if (item != null)
+                {
+                    TreeBush.Add(item);
+                }
             }
         }
 
@@ -271,7 +272,7 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         */
         private void GetInterchange()
         {
-            var interchange = FindObjectsOfType<GameObject>().Where(x => x.name.Contains("Slice_") && x.name.Contains("_trees")).ToList();
+            var interchange = FindObjectsOfType<GameObject>().Where(x => x.name.ToLower().Contains("slice_") && x.name.ToLower().Contains("_trees")).ToList();
 
             foreach (var item in interchange)
             {

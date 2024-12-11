@@ -8,19 +8,27 @@ namespace CWX_MegaMod.ChadMode
 {
     public class StaminaScript : MonoBehaviour
     {
-        private BackendConfigSettingsClass backendConfigSettingsClass;
+        private GameWorld _gameWorld;
+        private Player _player;
+        private float _oldStaminaCoef;
+        private float _newStaminaCoef = 0;
 
         private void Awake()
         {
-            backendConfigSettingsClass = Singleton<BackendConfigSettingsClass>.Instance;
+            _gameWorld = Singleton<GameWorld>.Instance;
+            _player = _gameWorld.MainPlayer;
+            _oldStaminaCoef = _player.ActiveHealthController.StaminaCoeff;
         }
 
         public void StartTask()
         {
-            if (backendConfigSettingsClass != null)
-            {
-                // backendConfigSettingsClass.Stamina
+            if (_player == null)
+            {   
+                MegaMod.LogToScreen("Player object was null, Not changing stamina coef", EMessageType.Error);
+                return;
             }
+            
+            // _player.ActiveHealthController.SetStaminaCoeff((MegaMod.UnlimitesStamina.Value ? _newStaminaCoef : _oldStaminaCoef));
         }
     }
 }

@@ -3,7 +3,7 @@
     <PropertyGroup>
         <AssemblyName>CWX_MegaMod</AssemblyName>
         <TargetFramework>net471</TargetFramework>
-        <Version>1.3.2</Version>
+        <Version>1.3.3</Version>
     </PropertyGroup>
 
     <ItemGroup>

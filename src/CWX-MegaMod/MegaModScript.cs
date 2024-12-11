@@ -24,7 +24,9 @@ namespace CWX_MegaMod
         public WeatherPatcherScript _weatherPatcherScript;
         public AlarmChangerScript _alarmChangerScript;
         public BotMonitorScript _botMonitorScript;
+        public GodModeScript _godModeScript;
         // public StaminaScript _staminaScript;
+        // public CameraShakeScript _cameraShakeScript;
 
         private void Awake()
         {
@@ -66,8 +68,9 @@ namespace CWX_MegaMod
             _weatherPatcherScript = _gameWorld.gameObject.AddComponent<WeatherPatcherScript>();
             _alarmChangerScript = _gameWorld.gameObject.AddComponent<AlarmChangerScript>();
             _botMonitorScript = _gameWorld.gameObject.AddComponent<BotMonitorScript>();
-            
+            _godModeScript = _gameWorld.gameObject.AddComponent<GodModeScript>();
             // _staminaScript = _gameWorld.gameObject.AddComponent<StaminaScript>();
+            // _cameraShakeScript = _gameWorld.gameObject.AddComponent<CameraShakeScript>();
         }
 
         private void RunFirstTime()
@@ -77,8 +80,9 @@ namespace CWX_MegaMod
             _masterKeyScript.StartTask();
             _environmentEnjoyerScript.StartTask();
             _weatherPatcherScript.StartTask();
-            
+            _godModeScript.StartTask();
             // _staminaScript.StartTask();
+            // _cameraShakeScript.StartTask();
         }
 
         private void SetupMegaModEvents()
@@ -93,8 +97,9 @@ namespace CWX_MegaMod
             MegaMod.BotMonitor.SettingChanged += (a, b) => RunBotMonitor();
             // reset the text style so fontsize changes happen
             MegaMod.BotMonitorFontSize.SettingChanged += (a, b) => _botMonitorScript.TextStyle = null;
-            
-            // MegaMod.ChadMode.SettingChanged += (a, b) => _staminaScript.StartTask();
+            MegaMod.GodMode.SettingChanged += (a, b) => _godModeScript.StartTask();
+            // MegaMod.UnlimitesStamina.SettingChanged += (a, b) => _staminaScript.StartTask();
+            // MegaMod.CameraShake.SettingChanged += (a, b) => _cameraShakeScript.StartTask();
         }
 
         private void RunBotMonitor()
