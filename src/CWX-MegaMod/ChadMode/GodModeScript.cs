@@ -10,24 +10,24 @@ namespace CWX_MegaMod.ChadMode
     {
         private GameWorld _gameWorld;
         private Player _player;
-        private float _oldHealthCoef;
+        private float _oldHealthCoef = 1; // eft default for this
+        private float _oldSafeFallHeight = 3; // eft default for this
         private float _newHealthCoef = 0;
-        private float _oldSafeFallHeight;
         private float _newSafeFallHeight = 999999f;
-        
+
         private void Awake()
         {
             _gameWorld = Singleton<GameWorld>.Instance;
             _player = _gameWorld.MainPlayer;
             _oldHealthCoef = _player.ActiveHealthController.DamageCoeff;
-            _oldSafeFallHeight = _player.ActiveHealthController.FallSafeHeight;
+            _oldSafeFallHeight = Singleton<BackendConfigSettingsClass>.Instance.Health.Falling.SafeHeight;
         }
 
         public void StartTask()
         {
             if (_player == null)
             {
-                MegaMod.LogToScreen("Player object was null, Not changing Damage coef", EMessageType.Error);
+                MegaMod.LogToScreen("Player object was null in GodModeScript", EMessageType.Error);
                 return;
             }
 
