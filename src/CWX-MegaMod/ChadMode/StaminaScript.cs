@@ -24,10 +24,11 @@ namespace CWX_MegaMod.ChadMode
         {
             if (_player == null)
             {   
-                MegaMod.LogToScreen("Player object was null, Not changing stamina coef", EMessageType.Error);
+                MegaMod.LogToScreen("Player object was null in StaminaScript", EMessageType.Error);
                 return;
             }
             
+            // Game does not use staminaCoeff, do this a different way.
             // _player.ActiveHealthController.SetStaminaCoeff((MegaMod.UnlimitesStamina.Value ? _newStaminaCoef : _oldStaminaCoef));
         }
     }

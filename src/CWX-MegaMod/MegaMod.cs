@@ -2,6 +2,7 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using CWX_MegaMod.BotMonitor.Models;
+using CWX_MegaMod.ChadMode;
 using CWX_MegaMod.Config;
 using CWX_MegaMod.InventoryViewer;
 using CWX_MegaMod.PainkillerDesat;
@@ -14,7 +15,7 @@ using UnityEngine;
 
 namespace CWX_MegaMod
 {
-	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.3.3")]
+	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.3.4")]
 	public class MegaMod : BaseUnityPlugin
 	{
 		internal new static ManualLogSource Logger { get; private set; }
@@ -34,11 +35,10 @@ namespace CWX_MegaMod
 		internal static ConfigEntry<EMonitorMode> BotMonitorValue { get; private set; }
 		internal static ConfigEntry<int> BotMonitorFontSize { get; private set; }
 		internal static ConfigEntry<bool> GodMode { get; private set; }
-		// internal static ConfigEntry<bool> UnlimitesStamina { get; private set; }
-		// internal static ConfigEntry<bool> CameraShake { get; private set; }
-		// internal static ConfigEntry<bool> ChadModeStamJiggle { get; private set; }
-		// internal static ConfigEntry<bool> ChadModeCamRock { get; private set; }
-		// internal static ConfigEntry<bool> ChadModeBreathing { get; private set; }
+		internal static ConfigEntry<bool> ThermalMode { get; private set; }
+		internal static ConfigEntry<bool> BetterThermalMode { get; private set; }
+		internal static ConfigEntry<bool> NightVisionMode { get; private set; }
+		internal static ConfigEntry<bool> CameraShake { get; private set; }
 
 		public void Awake()
 		{
@@ -55,6 +55,7 @@ namespace CWX_MegaMod
 			new PainkillerDesatScript3().Enable();
 			new PainkillerDesatScript4().Enable();
 			new WeatherPatcherScopePatch().Enable();
+			new CameraShakePatch().Enable();
 		}
 
 		// Higher order number comes first
@@ -73,22 +74,20 @@ namespace CWX_MegaMod
 			FogRemover = Config.Bind("1- All Mods", "FogRemover - On/Off", false, new ConfigDescription("Enable FogRemover - Removes fog", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 			
 			// MasterKey Settings
-			MasterKeyToUse = Config.Bind("2- MasterKey", "MasterKeyToUse", EMasterKeys.Yellow, new ConfigDescription("This will be set to all unlockable doors", tags: new ConfigurationManagerAttributes() { Order = 1 }));
+			MasterKeyToUse = Config.Bind("3- MasterKey", "MasterKeyToUse", EMasterKeys.Yellow, new ConfigDescription("This will be set to all unlockable doors", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 			
 			// Debugging Mods
-			BotMonitor = Config.Bind("3- Debug Mods", "BotMonitor - On/Off", false, new ConfigDescription("Enable BotMonitor - Adds a custom gui for Bot Monitoring", tags: new ConfigurationManagerAttributes() { Order = 5 }));
-			InventoryViewer = Config.Bind("3- Debug Mods", "InventoryViewer - On/Off", false, new ConfigDescription("Enable InventoryViewer - Changes inventory view to show all containers or not", tags: new ConfigurationManagerAttributes() { Order = 4 }));
-			// UnlimitesStamina = Config.Bind("3- Debug Mods", "UnlimitedStamina - On/Off", false, new ConfigDescription("Enable UnlimitedStamina - Changes stamina to not drain", tags: new ConfigurationManagerAttributes() { Order = 3 }));
-			GodMode = Config.Bind("3- Debug Mods", "GodMode - On/Off", false, new ConfigDescription("Enable GodMode - Unable to be killed", tags: new ConfigurationManagerAttributes() { Order = 2 }));
-			// CameraShake = Config.Bind("3- Debug Mods", "CameraShake - On/Off", false, new ConfigDescription("Disable CameraShake - Removes CameraShake", tags: new ConfigurationManagerAttributes() { Order = 1 }));
+			BotMonitor = Config.Bind("2- Debug Mods", "BotMonitor - On/Off", false, new ConfigDescription("Enable BotMonitor - Adds a custom gui for Bot Monitoring", tags: new ConfigurationManagerAttributes() { Order = 7 }));
+			InventoryViewer = Config.Bind("2- Debug Mods", "InventoryViewer - On/Off", false, new ConfigDescription("Enable InventoryViewer - Changes inventory view to show all containers or not", tags: new ConfigurationManagerAttributes() { Order = 6 }));
+			GodMode = Config.Bind("2- Debug Mods", "GodMode - On/Off", false, new ConfigDescription("Enable GodMode - Unable to be killed", tags: new ConfigurationManagerAttributes() { Order = 5 }));
+			CameraShake = Config.Bind("2- Debug Mods", "CameraShake - On/Off", false, new ConfigDescription("Disable CameraShake - Removes CameraShake", tags: new ConfigurationManagerAttributes() { Order = 4 }));
+			ThermalMode = Config.Bind("2- Debug Mods", "TheramlMode - On/Off", false, new ConfigDescription("Enable TheramlMode - Enables TheramlMode", tags: new ConfigurationManagerAttributes() { Order = 3 }));
+			BetterThermalMode = Config.Bind("2- Debug Mods", "BetterThermalMode - On/Off", false, new ConfigDescription("Enable BetterThermalMode - Disables Blur/Noise/etc of the thermal", tags: new ConfigurationManagerAttributes() { Order = 2 }));
+			NightVisionMode = Config.Bind("2- Debug Mods", "NightVisionMode - On/Off", false, new ConfigDescription("Enable NightVisionMode - Enables NightVisionMode", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 			
 			// BotMonitor Settings
 			BotMonitorValue = Config.Bind("4- BotMonitor", "BotMonitorValue", EMonitorMode.Total, new ConfigDescription("This will be set to only show total", tags: new ConfigurationManagerAttributes() { Order = 2 }));
 			BotMonitorFontSize = Config.Bind("4- BotMonitor", "BotMonitorFontSize", 14, new ConfigDescription("This sets the font size obviously", tags: new ConfigurationManagerAttributes() { Order = 1 }));
-
-			//ChadModeStamJiggle = Config.Bind("ChadMode", "Disable Exhaustion Jiggle", false, new ConfigDescription("Disable Exhaustion Jiggle", tags: new ConfigurationManagerAttributes() { Order = 3 }));
-			//ChadModeCamRock = Config.Bind("ChadMode", "Disable Exhaustion CameraRock", false, new ConfigDescription("Disable Exhaustion CameraRock", tags: new ConfigurationManagerAttributes() { Order = 2 }));
-			//ChadModeBreathing = Config.Bind("ChadMode", "Disable Exhaustion Breathing", false, new ConfigDescription("Disable Exhaustion Breathing", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 		}
 
 		public static void LogToScreen(string message = "", EMessageType eMessageType = EMessageType.Info)

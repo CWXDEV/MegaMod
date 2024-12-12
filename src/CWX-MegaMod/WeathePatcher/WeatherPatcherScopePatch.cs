@@ -16,6 +16,7 @@ namespace CWX_MegaMod.WeatherPatcher
         [PatchPostfix]
         public static void PatchPostfix(ref OpticComponentUpdater __instance)
         {
+            // TODO: issue might happen when starting with a 1x and picking up and using a 6x
             try
             {
                 if (!WeatherPatcherScript.ScopeRunOnce)

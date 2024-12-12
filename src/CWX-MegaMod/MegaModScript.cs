@@ -25,8 +25,7 @@ namespace CWX_MegaMod
         public AlarmChangerScript _alarmChangerScript;
         public BotMonitorScript _botMonitorScript;
         public GodModeScript _godModeScript;
-        // public StaminaScript _staminaScript;
-        // public CameraShakeScript _cameraShakeScript;
+        public CameraScripts _cameraScripts;
 
         private void Awake()
         {
@@ -69,8 +68,7 @@ namespace CWX_MegaMod
             _alarmChangerScript = _gameWorld.gameObject.AddComponent<AlarmChangerScript>();
             _botMonitorScript = _gameWorld.gameObject.AddComponent<BotMonitorScript>();
             _godModeScript = _gameWorld.gameObject.AddComponent<GodModeScript>();
-            // _staminaScript = _gameWorld.gameObject.AddComponent<StaminaScript>();
-            // _cameraShakeScript = _gameWorld.gameObject.AddComponent<CameraShakeScript>();
+            _cameraScripts = _gameWorld.gameObject.AddComponent<CameraScripts>();
         }
 
         private void RunFirstTime()
@@ -81,8 +79,7 @@ namespace CWX_MegaMod
             _environmentEnjoyerScript.StartTask();
             _weatherPatcherScript.StartTask();
             _godModeScript.StartTask();
-            // _staminaScript.StartTask();
-            // _cameraShakeScript.StartTask();
+            _cameraScripts.StartTask();
         }
 
         private void SetupMegaModEvents()
@@ -94,15 +91,16 @@ namespace CWX_MegaMod
             MegaMod.EnvironmentEnjoyer.SettingChanged += (a, b) => _environmentEnjoyerScript.StartTask();
             MegaMod.FogRemover.SettingChanged += (a, b) => _weatherPatcherScript.StartTask();
             MegaMod.WeatherDebug.SettingChanged += (a, b) => _weatherPatcherScript.StartTask();
-            MegaMod.BotMonitor.SettingChanged += (a, b) => RunBotMonitor();
+            MegaMod.BotMonitor.SettingChanged += (a, b) => SetBotMonitor();
             // reset the text style so fontsize changes happen
             MegaMod.BotMonitorFontSize.SettingChanged += (a, b) => _botMonitorScript.TextStyle = null;
             MegaMod.GodMode.SettingChanged += (a, b) => _godModeScript.StartTask();
-            // MegaMod.UnlimitesStamina.SettingChanged += (a, b) => _staminaScript.StartTask();
-            // MegaMod.CameraShake.SettingChanged += (a, b) => _cameraShakeScript.StartTask();
+            MegaMod.ThermalMode.SettingChanged += (a, b) => _cameraScripts.StartTask();
+            MegaMod.NightVisionMode.SettingChanged += (a, b) => _cameraScripts.StartTask();
+            MegaMod.BetterThermalMode.SettingChanged += (a, b) => _cameraScripts.StartTask();
         }
 
-        private void RunBotMonitor()
+        private void SetBotMonitor()
         {
             _botMonitorScript.enabled = !_botMonitorScript.enabled;
         }
