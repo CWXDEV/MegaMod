@@ -1,4 +1,5 @@
-﻿using CWX_MegaMod.Config;
+﻿#if !DEBUG
+using CWX_MegaMod.Config;
 
 namespace CWX_MegaMod.MasterKey
 {
@@ -26,3 +27,4 @@ namespace CWX_MegaMod.MasterKey
         }
     }
 }
+#endif

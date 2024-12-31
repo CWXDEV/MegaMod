@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if !DEBUG
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EFT.Interactive;
@@ -71,3 +72,4 @@ namespace CWX_MegaMod.BushWhacker
         }
     }
 }
+#endif

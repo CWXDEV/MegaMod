@@ -1,3 +1,4 @@
+#if !DEBUG
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -289,3 +290,4 @@ namespace CWX_MegaMod.EnvironmentEnjoyer
         }
     }
 }
+#endif

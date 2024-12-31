@@ -1,3 +1,4 @@
+#if !DEBUG
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,3 +25,4 @@ namespace CWX_MegaMod.SpaceUser
         }
     }
 }
+#endif

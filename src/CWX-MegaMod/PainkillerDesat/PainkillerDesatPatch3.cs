@@ -1,3 +1,4 @@
+#if !DEBUG
 using System.Reflection;
 using SPT.Reflection.Patching;
 using HarmonyLib;
@@ -28,3 +29,4 @@ namespace CWX_MegaMod.PainkillerDesat
         }
     }
 }
+#endif

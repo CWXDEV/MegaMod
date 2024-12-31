@@ -1,3 +1,4 @@
+#if !DEBUG
 using System;
 using System.Reflection;
 using SPT.Reflection.Patching;
@@ -45,3 +46,4 @@ namespace CWX_MegaMod.WeatherPatcher
         }
     }
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if !DEBUG
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,3 +46,4 @@ namespace CWX_MegaMod.GrassCutter
         }
     }
 }
+#endif

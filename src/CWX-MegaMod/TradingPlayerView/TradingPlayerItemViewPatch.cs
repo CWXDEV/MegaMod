@@ -1,3 +1,4 @@
+#if !DEBUG
 using System.Reflection;
 using SPT.Reflection.Patching;
 using Comfort.Common;
@@ -33,3 +34,4 @@ namespace CWX_MegaMod.TradingPlayerView
         }
     }
 }
+#endif
