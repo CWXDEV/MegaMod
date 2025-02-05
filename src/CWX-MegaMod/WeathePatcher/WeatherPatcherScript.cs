@@ -1,4 +1,3 @@
-#if !DEBUG
 using System;
 using EFT.Weather;
 using UnityEngine;
@@ -92,4 +91,3 @@ namespace CWX_MegaMod.WeatherPatcher
         }
     }
 }
-#endif

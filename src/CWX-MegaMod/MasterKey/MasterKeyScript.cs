@@ -1,5 +1,4 @@
-﻿#if !DEBUG
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -146,4 +145,3 @@ namespace CWX_MegaMod.MasterKey
         }
     }
 }
-#endif

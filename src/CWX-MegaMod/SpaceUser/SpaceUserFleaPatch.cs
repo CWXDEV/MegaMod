@@ -1,4 +1,3 @@
-#if !DEBUG
 using System.Linq;
 using System.Reflection;
 using SPT.Reflection.Patching;
@@ -25,4 +24,3 @@ namespace CWX_MegaMod.SpaceUser
         }
     }
 }
-#endif

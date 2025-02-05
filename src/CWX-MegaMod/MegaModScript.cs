@@ -1,14 +1,12 @@
-﻿#if !DEBUG
+﻿using Comfort.Common;
 using CWX_MegaMod.AlarmChanger;
+using CWX_MegaMod.BotMonitor;
 using CWX_MegaMod.BushWhacker;
+using CWX_MegaMod.ChadMode;
 using CWX_MegaMod.EnvironmentEnjoyer;
 using CWX_MegaMod.GrassCutter;
 using CWX_MegaMod.MasterKey;
 using CWX_MegaMod.WeatherPatcher;
-#endif
-using Comfort.Common;
-using CWX_MegaMod.BotMonitor;
-using CWX_MegaMod.ChadMode;
 using EFT;
 using EFT.UI;
 using UnityEngine;
@@ -19,14 +17,12 @@ namespace CWX_MegaMod
     {
         private GameWorld _gameWorld;
         private Player _player;
-#if !DEBUG
         public BushWhackerScript _bushWhackerScript;
         public GrassCutterScript _grassCutterScript;
         public MasterKeyScript _masterKeyScript;
         public EnvironmentEnjoyerScript _environmentEnjoyerScript;
         public WeatherPatcherScript _weatherPatcherScript;
         public AlarmChangerScript _alarmChangerScript;
-#endif
         public BotMonitorScript _botMonitorScript;
         public GodModeScript _godModeScript;
         public CameraScripts _cameraScripts;
@@ -64,14 +60,12 @@ namespace CWX_MegaMod
 
         private void SetupMegaModScripts()
         {
-#if !DEBUG
             _bushWhackerScript = _gameWorld.gameObject.AddComponent<BushWhackerScript>();
             _grassCutterScript = _gameWorld.gameObject.AddComponent<GrassCutterScript>();
             _masterKeyScript = _gameWorld.gameObject.AddComponent<MasterKeyScript>();
             _environmentEnjoyerScript = _gameWorld.gameObject.AddComponent<EnvironmentEnjoyerScript>();
             _weatherPatcherScript = _gameWorld.gameObject.AddComponent<WeatherPatcherScript>();
             _alarmChangerScript = _gameWorld.gameObject.AddComponent<AlarmChangerScript>();
-#endif
             _botMonitorScript = _gameWorld.gameObject.AddComponent<BotMonitorScript>();
             _godModeScript = _gameWorld.gameObject.AddComponent<GodModeScript>();
             _cameraScripts = _gameWorld.gameObject.AddComponent<CameraScripts>();
@@ -79,20 +73,17 @@ namespace CWX_MegaMod
 
         private void RunFirstTime()
         {
-#if !DEBUG
             _bushWhackerScript.StartTask();
             _grassCutterScript.StartTask();
             _masterKeyScript.StartTask();
             _environmentEnjoyerScript.StartTask();
             _weatherPatcherScript.StartTask();
-#endif
             _godModeScript.StartTask();
             _cameraScripts.StartTask();
         }
 
         private void SetupMegaModEvents()
         {
-#if !DEBUG
             MegaMod.BushWhacker.SettingChanged += (a, b) => _bushWhackerScript.StartTask();
             MegaMod.GrassCutter.SettingChanged += (a, b) => _grassCutterScript.StartTask();
             MegaMod.MasterKey.SettingChanged += (a, b) => _masterKeyScript.StartTask();
@@ -100,7 +91,6 @@ namespace CWX_MegaMod
             MegaMod.EnvironmentEnjoyer.SettingChanged += (a, b) => _environmentEnjoyerScript.StartTask();
             MegaMod.FogRemover.SettingChanged += (a, b) => _weatherPatcherScript.StartTask();
             MegaMod.WeatherDebug.SettingChanged += (a, b) => _weatherPatcherScript.StartTask();
-#endif
             MegaMod.BotMonitor.SettingChanged += (a, b) => SetBotMonitor();
             // reset the text style so fontsize changes happen
             MegaMod.BotMonitorFontSize.SettingChanged += (a, b) => _botMonitorScript.TextStyle = null;

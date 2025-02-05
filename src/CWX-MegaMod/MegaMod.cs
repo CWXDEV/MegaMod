@@ -3,25 +3,22 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using CWX_MegaMod.BotMonitor.Models;
 using CWX_MegaMod.ChadMode;
-using CWX_MegaMod.InventoryViewer;
-#if !DEBUG
 using CWX_MegaMod.Config;
+using CWX_MegaMod.InventoryViewer;
 using CWX_MegaMod.PainkillerDesat;
 using CWX_MegaMod.SpaceUser;
 using CWX_MegaMod.TradingPlayerView;
 using CWX_MegaMod.WeatherPatcher;
-#endif
 using EFT.Communications;
 using EFT.UI;
 using UnityEngine;
 
 namespace CWX_MegaMod
 {
-	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.4.0")]
+	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.3.4")]
 	public class MegaMod : BaseUnityPlugin
 	{
 		internal new static ManualLogSource Logger { get; private set; }
-# if !DEBUG
 		internal static ConfigEntry<bool> BushWhacker { get; private set; }
 		internal static ConfigEntry<bool> GrassCutter { get; private set; }
 		internal static ConfigEntry<bool> MasterKey { get; private set; }
@@ -29,13 +26,11 @@ namespace CWX_MegaMod
 		internal static ConfigEntry<bool> TradingPlayerView { get; private set; }
 		internal static ConfigEntry<bool> SpaceUser { get; private set; }
 		internal static ConfigEntry<bool> EnvironmentEnjoyer { get; private set; }
+		internal static ConfigEntry<bool> InventoryViewer { get; private set; }
 		internal static ConfigEntry<bool> PainkillerDesat { get; private set; }
 		internal static ConfigEntry<bool> FogRemover { get; private set; }
 		internal static ConfigEntry<bool> WeatherDebug { get; private set; }
 		internal static ConfigEntry<bool> ReserveAlarmChanger { get; private set; }
-# endif
-
-		internal static ConfigEntry<bool> InventoryViewer { get; private set; }
 		internal static ConfigEntry<bool> BotMonitor { get; private set; }
 		internal static ConfigEntry<EMonitorMode> BotMonitorValue { get; private set; }
 		internal static ConfigEntry<int> BotMonitorFontSize { get; private set; }
@@ -51,24 +46,21 @@ namespace CWX_MegaMod
 			InitConfig();
 
 			new MegaModPatch().Enable();
-# if !DEBUG
 			new SpaceUserSplitPatch().Enable();
 			new SpaceUserFleaPatch().Enable();
 			new TradingPlayerItemViewPatch().Enable();
+			new InventoryViewerPatch().Enable();
 			new PainkillerDesatScript1().Enable();
 			new PainkillerDesatScript2().Enable();
 			new PainkillerDesatScript3().Enable();
 			new PainkillerDesatScript4().Enable();
 			new WeatherPatcherScopePatch().Enable();
-# endif
-			new InventoryViewerPatch().Enable();
 			new CameraShakePatch().Enable();
 		}
 
 		// Higher order number comes first
 		private void InitConfig()
 		{
-# if !DEBUG
 			// Normal mods
 			ReserveAlarmChanger = Config.Bind("1- All Mods", "ReserveAlarmChanger - On/Off", false, new ConfigDescription("Enable Reserve Alarm Changer - changes alarm sound to file on plugin folder (ONLY RUNS ON RAID START)", tags: new ConfigurationManagerAttributes() { Order = 11 }));
 			BushWhacker = Config.Bind("1- All Mods", "BushWhacker - On/Off", false, new ConfigDescription("Enable BushWhacker - removes slowdown from bushes", tags: new ConfigurationManagerAttributes() { Order = 10 }));
@@ -83,7 +75,7 @@ namespace CWX_MegaMod
 			
 			// MasterKey Settings
 			MasterKeyToUse = Config.Bind("3- MasterKey", "MasterKeyToUse", EMasterKeys.Yellow, new ConfigDescription("This will be set to all unlockable doors", tags: new ConfigurationManagerAttributes() { Order = 1 }));
-# endif
+			
 			// Debugging Mods
 			BotMonitor = Config.Bind("2- Debug Mods", "BotMonitor - On/Off", false, new ConfigDescription("Enable BotMonitor - Adds a custom gui for Bot Monitoring", tags: new ConfigurationManagerAttributes() { Order = 7 }));
 			InventoryViewer = Config.Bind("2- Debug Mods", "InventoryViewer - On/Off", false, new ConfigDescription("Enable InventoryViewer - Changes inventory view to show all containers or not", tags: new ConfigurationManagerAttributes() { Order = 6 }));

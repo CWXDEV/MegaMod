@@ -1,5 +1,4 @@
-﻿#if !DEBUG
-namespace CWX_MegaMod.Config
+﻿namespace CWX_MegaMod.Config
 {
     public enum EMasterKeys
     {
@@ -11,4 +10,3 @@ namespace CWX_MegaMod.Config
         Black
     }
 }
-#endif

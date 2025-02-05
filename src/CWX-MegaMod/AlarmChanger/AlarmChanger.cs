@@ -1,4 +1,3 @@
-#if !DEBUG
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -88,4 +87,3 @@ namespace CWX_MegaMod.AlarmChanger
         }
     }
 }
-#endif

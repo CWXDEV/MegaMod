@@ -1,4 +1,3 @@
-#if !DEBUG
 using System.Reflection;
 using SPT.Reflection.Patching;
 using EFT.UI;
@@ -22,4 +21,3 @@ namespace CWX_MegaMod.SpaceUser
         }
     }
 }
-#endif
