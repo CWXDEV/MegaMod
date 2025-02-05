@@ -1,4 +1,4 @@
-### TO BE UPDATED, in active development
+### TO BE UPDATED, CURRENTLY WORKING ON SPT SO ON HOLD
 
 I got fed up with multiple mods, so I combined them into one.
 
