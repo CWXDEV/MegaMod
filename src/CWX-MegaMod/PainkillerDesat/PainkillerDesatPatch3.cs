@@ -8,7 +8,9 @@ namespace CWX_MegaMod.PainkillerDesat
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(EffectsController.Class649), nameof(EffectsController.Class649.Toggle));
+            return AccessTools.Method(typeof(EffectsController.Class646), nameof(EffectsController.Class646.Toggle));
+            
+            // find the type inside EffectsController that has private CC_Wiggle cc_Wiggle_0;
         }
 
         [PatchPrefix] // removes the wiggle effect from some painkillers
