@@ -9,11 +9,8 @@ namespace CWX_MegaMod.WeatherPatcher
         private CameraClass camera;
         private WeatherController weatherController;
         private float debugFogFloat = 0f;
-        private TOD_Scattering scattering = null;
-        private MBOIT_Scattering mboit = null;
-        public static bool ScopeRunOnce = false;
-        public static TOD_Scattering ScopeScattering = null;
-        public static MBOIT_Scattering ScopeMboit = null;
+        // private TOD_Scattering scattering = null;
+        // private MBOIT_Scattering mboit = null;
 
         private void Awake()
         {
@@ -29,8 +26,8 @@ namespace CWX_MegaMod.WeatherPatcher
 
                 if (camera.Camera != null)
                 {
-                    scattering = camera.Camera.gameObject.GetComponentInChildren<TOD_Scattering>();
-                    mboit = camera.Camera.gameObject.GetComponentInChildren<MBOIT_Scattering>();
+                    // scattering = camera.Camera.gameObject.GetComponentInChildren<TOD_Scattering>();
+                    // mboit = camera.Camera.gameObject.GetComponentInChildren<MBOIT_Scattering>();
                 }
             }
             catch (Exception e)
@@ -44,15 +41,15 @@ namespace CWX_MegaMod.WeatherPatcher
         {
             try
             {
-                if (scattering != null)
-                {
-                    scattering.enabled = !MegaMod.FogRemover.Value;
-                }
-
-                if (mboit != null)
-                {
-                    mboit.enabled = !MegaMod.FogRemover.Value;
-                }
+                // if (scattering != null)
+                // {
+                //     scattering.enabled = !MegaMod.FogRemover.Value;
+                // }
+                //
+                // if (mboit != null)
+                // {
+                //     mboit.enabled = !MegaMod.FogRemover.Value;
+                // }
 
                 if (weatherController != null)
                 {
@@ -81,13 +78,6 @@ namespace CWX_MegaMod.WeatherPatcher
                 MegaMod.LogToScreen("Exception on weatherpatchscript start task", EMessageType.Error);
                 MegaMod.LogToScreen(e.Message, EMessageType.Error);
             }
-        }
-
-        public void OnDestroy()
-        {
-            ScopeRunOnce = false;
-            ScopeScattering = null;
-            ScopeMboit = null;
         }
     }
 }

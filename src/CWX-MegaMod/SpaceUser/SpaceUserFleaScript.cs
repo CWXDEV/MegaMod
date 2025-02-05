@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using EFT.UI;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace CWX_MegaMod.SpaceUser
     {
         private DefaultUIButton _acceptButton = null;
 
-        public SpaceUserFleaScript()
+        public void Awake()
         {
             _acceptButton = GameObject.Find("Menu UI")
                 .GetComponentsInChildren<Transform>(true)

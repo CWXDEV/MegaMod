@@ -14,27 +14,23 @@ namespace CWX_MegaMod.WeatherPatcher
         }
 
         [PatchPostfix]
-        public static void PatchPostfix(ref OpticComponentUpdater __instance)
+        public static void PatchPostfix(ref OpticComponentUpdater __instance, MBOIT_Scattering ___mboit_Scattering_1, TOD_Scattering ___tod_Scattering_1)
         {
-            // TODO: issue might happen when starting with a 1x and picking up and using a 6x
             try
             {
-                if (!WeatherPatcherScript.ScopeRunOnce)
+                if (___mboit_Scattering_1.sky == null || ___tod_Scattering_1.sky == null)
                 {
-                    WeatherPatcherScript.ScopeScattering = __instance.gameObject.GetComponent<TOD_Scattering>();
-                    WeatherPatcherScript.ScopeMboit = __instance.gameObject.GetComponent<MBOIT_Scattering>();
-
-                    WeatherPatcherScript.ScopeRunOnce = true;
+                    return;
+                }
+                
+                if (___tod_Scattering_1 != null)
+                {
+                    ___tod_Scattering_1.enabled = !MegaMod.FogRemover.Value;
                 }
 
-                if (WeatherPatcherScript.ScopeScattering != null)
+                if (___mboit_Scattering_1 != null)
                 {
-                    WeatherPatcherScript.ScopeScattering.enabled = !MegaMod.FogRemover.Value;
-                }
-
-                if (WeatherPatcherScript.ScopeMboit != null)
-                {
-                    WeatherPatcherScript.ScopeMboit.enabled = !MegaMod.FogRemover.Value;
+                    ___mboit_Scattering_1.enabled = !MegaMod.FogRemover.Value;
                 }
             }
             catch (Exception e)

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ namespace CWX_MegaMod.SpaceUser
     {
         private Button _acceptButton = null;
 
-        public SpaceUserSplitScript()
+        public void Awake()
         {
             _acceptButton = GameObject.Find("Split Dialog(Clone)")
                 .GetComponentsInChildren<Button>()
