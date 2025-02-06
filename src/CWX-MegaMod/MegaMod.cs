@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace CWX_MegaMod
 {
-	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.3.4")]
+	[BepInPlugin("CWX.MegaMod", "CWX-MegaMod", "1.4.1")]
 	public class MegaMod : BaseUnityPlugin
 	{
 		internal new static ManualLogSource Logger { get; private set; }
@@ -54,7 +54,7 @@ namespace CWX_MegaMod
 			new PainkillerDesatScript2().Enable();
 			new PainkillerDesatScript3().Enable();
 			new PainkillerDesatScript4().Enable();
-			new WeatherPatcherScopePatch().Enable();
+			// new WeatherPatcherScopePatch().Enable();
 			new CameraShakePatch().Enable();
 		}
 
@@ -81,7 +81,7 @@ namespace CWX_MegaMod
 			InventoryViewer = Config.Bind("2- Debug Mods", "InventoryViewer - On/Off", false, new ConfigDescription("Enable InventoryViewer - Changes inventory view to show all containers or not", tags: new ConfigurationManagerAttributes() { Order = 6 }));
 			GodMode = Config.Bind("2- Debug Mods", "GodMode - On/Off", false, new ConfigDescription("Enable GodMode - Unable to be killed", tags: new ConfigurationManagerAttributes() { Order = 5 }));
 			CameraShake = Config.Bind("2- Debug Mods", "CameraShake - On/Off", false, new ConfigDescription("Disable CameraShake - Removes CameraShake", tags: new ConfigurationManagerAttributes() { Order = 4 }));
-			ThermalMode = Config.Bind("2- Debug Mods", "TheramlMode - On/Off", false, new ConfigDescription("Enable TheramlMode - Enables TheramlMode", tags: new ConfigurationManagerAttributes() { Order = 3 }));
+			ThermalMode = Config.Bind("2- Debug Mods", "ThermalMode - On/Off", false, new ConfigDescription("Enable ThermalMode - Enables ThermalMode", tags: new ConfigurationManagerAttributes() { Order = 3 }));
 			BetterThermalMode = Config.Bind("2- Debug Mods", "BetterThermalMode - On/Off", false, new ConfigDescription("Enable BetterThermalMode - Disables Blur/Noise/etc of the thermal", tags: new ConfigurationManagerAttributes() { Order = 2 }));
 			NightVisionMode = Config.Bind("2- Debug Mods", "NightVisionMode - On/Off", false, new ConfigDescription("Enable NightVisionMode - Enables NightVisionMode", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 			
