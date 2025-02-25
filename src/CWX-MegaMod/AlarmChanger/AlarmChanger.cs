@@ -24,6 +24,12 @@ namespace CWX_MegaMod.AlarmChanger
             }
 
             _clips = new List<AudioClip>();
+
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "/BepInEx/plugins/CWX/Sounds/"))
+            {
+                Destroy(this);
+            }
+            
             audioFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + "/BepInEx/plugins/CWX/Sounds/").ToList();
             subs = FindObjectsOfType<InteractiveSubscriber>().Where(x => x.name.Contains("Siren_")).ToList();
 

@@ -5,7 +5,7 @@ using CWX_MegaMod.BotMonitor.Models;
 using CWX_MegaMod.ChadMode;
 using CWX_MegaMod.Config;
 using CWX_MegaMod.InventoryViewer;
-using CWX_MegaMod.PainkillerDesat;
+// using CWX_MegaMod.PainkillerDesat;
 using CWX_MegaMod.SpaceUser;
 using CWX_MegaMod.TradingPlayerView;
 using CWX_MegaMod.WeatherPatcher;
@@ -39,6 +39,7 @@ namespace CWX_MegaMod
 		internal static ConfigEntry<bool> BetterThermalMode { get; private set; }
 		internal static ConfigEntry<bool> NightVisionMode { get; private set; }
 		internal static ConfigEntry<bool> CameraShake { get; private set; }
+		internal static ConfigEntry<bool> WindowWiper { get; private set; }
 
 		public void Awake()
 		{
@@ -50,10 +51,10 @@ namespace CWX_MegaMod
 			new SpaceUserFleaPatch().Enable();
 			new TradingPlayerItemViewPatch().Enable();
 			new InventoryViewerPatch().Enable();
-			new PainkillerDesatScript1().Enable();
-			new PainkillerDesatScript2().Enable();
-			new PainkillerDesatScript3().Enable();
-			new PainkillerDesatScript4().Enable();
+			// new PainkillerDesatScript1().Enable();
+			// new PainkillerDesatScript2().Enable();
+			// new PainkillerDesatScript3().Enable();
+			// new PainkillerDesatScript4().Enable();
 			// new WeatherPatcherScopePatch().Enable();
 			new CameraShakePatch().Enable();
 		}
@@ -72,6 +73,7 @@ namespace CWX_MegaMod
 			PainkillerDesat = Config.Bind("1- All Mods", "PainkillerDesat - On/Off", false, new ConfigDescription("Enable PainkillerDesat - Removes effects from taking painkillers", tags: new ConfigurationManagerAttributes() { Order = 3 }));
 			WeatherDebug = Config.Bind("1- All Mods", "WeatherDebugMode - On/Off", false, new ConfigDescription("Enable WeatherDebugMode - Makes it super sunny", tags: new ConfigurationManagerAttributes() { Order = 2 }));
 			FogRemover = Config.Bind("1- All Mods", "FogRemover - On/Off", false, new ConfigDescription("Enable FogRemover - Removes fog", tags: new ConfigurationManagerAttributes() { Order = 1 }));
+			FogRemover = Config.Bind("1- All Mods", "WindowWiper - On/Off", false, new ConfigDescription("Enable WindowWiper - Removes Windows", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 			
 			// MasterKey Settings
 			MasterKeyToUse = Config.Bind("3- MasterKey", "MasterKeyToUse", EMasterKeys.Yellow, new ConfigDescription("This will be set to all unlockable doors", tags: new ConfigurationManagerAttributes() { Order = 1 }));

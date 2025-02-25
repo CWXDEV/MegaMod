@@ -64,6 +64,9 @@
         <Reference Include="UnityEngine.UnityWebRequestModule">
             <HintPath>..\..\shared\UnityEngine.UnityWebRequestModule.dll</HintPath>
         </Reference>
+        <Reference Include="Unity.Postprocessing.Runtime">
+            <HintPath>..\..\shared\Unity.Postprocessing.Runtime.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

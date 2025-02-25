@@ -1,4 +1,5 @@
-﻿using Comfort.Common;
+﻿using System.Threading.Tasks;
+using Comfort.Common;
 using CWX_MegaMod.AlarmChanger;
 using CWX_MegaMod.BotMonitor;
 using CWX_MegaMod.BushWhacker;
@@ -7,9 +8,11 @@ using CWX_MegaMod.EnvironmentEnjoyer;
 using CWX_MegaMod.GrassCutter;
 using CWX_MegaMod.MasterKey;
 using CWX_MegaMod.WeatherPatcher;
+using CWX_MegaMod.WindowWiper;
 using EFT;
 using EFT.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CWX_MegaMod
 {
@@ -26,6 +29,7 @@ namespace CWX_MegaMod
         public BotMonitorScript _botMonitorScript;
         public GodModeScript _godModeScript;
         public CameraScripts _cameraScripts;
+        [FormerlySerializedAs("_windowWiperScript")] public TempFuckaroundScript tempFuckaroundScript;
 
         private void Awake()
         {
@@ -69,9 +73,10 @@ namespace CWX_MegaMod
             _botMonitorScript = _gameWorld.gameObject.AddComponent<BotMonitorScript>();
             _godModeScript = _gameWorld.gameObject.AddComponent<GodModeScript>();
             _cameraScripts = _gameWorld.gameObject.AddComponent<CameraScripts>();
+            tempFuckaroundScript = _gameWorld.gameObject.AddComponent<TempFuckaroundScript>();
         }
 
-        private void RunFirstTime()
+        private async Task RunFirstTime()
         {
             _bushWhackerScript.StartTask();
             _grassCutterScript.StartTask();
@@ -80,6 +85,7 @@ namespace CWX_MegaMod
             _weatherPatcherScript.StartTask();
             _godModeScript.StartTask();
             _cameraScripts.StartTask();
+            await tempFuckaroundScript.StartTask();
         }
 
         private void SetupMegaModEvents()
@@ -98,6 +104,7 @@ namespace CWX_MegaMod
             MegaMod.ThermalMode.SettingChanged += (a, b) => _cameraScripts.StartTask();
             MegaMod.NightVisionMode.SettingChanged += (a, b) => _cameraScripts.StartTask();
             MegaMod.BetterThermalMode.SettingChanged += (a, b) => _cameraScripts.StartTask();
+            MegaMod.WindowWiper.SettingChanged += (a, b) => tempFuckaroundScript.StartTask();
         }
 
         private void SetBotMonitor()
