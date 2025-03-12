@@ -7,6 +7,12 @@
         Blue,
         Red,
         Violet,
-        Black
+        Black,
+        Access,
+        Storage,
+        Residential,
+        ElevenSR,
+        TwentyOneWS,
+        BlueMarked
     }
 }

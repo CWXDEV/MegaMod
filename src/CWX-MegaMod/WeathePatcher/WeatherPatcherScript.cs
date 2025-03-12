@@ -8,7 +8,7 @@ namespace CWX_MegaMod.WeatherPatcher
     {
         private CameraClass camera;
         private WeatherController weatherController;
-        private float debugFogFloat = 0f;
+        private float debugFogFloat = 0.001f;
         // private TOD_Scattering scattering = null;
         // private MBOIT_Scattering mboit = null;
 
@@ -55,7 +55,7 @@ namespace CWX_MegaMod.WeatherPatcher
                 {
                     if (MegaMod.FogRemover.Value)
                     {
-                        weatherController.WeatherDebug.Fog = 0f;
+                        weatherController.WeatherDebug.Fog = 0.001f;
                     }
                     else
                     {
