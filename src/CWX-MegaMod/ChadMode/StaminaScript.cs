@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Comfort.Common;
 using EFT;
 using EFT.HealthSystem;
@@ -20,14 +21,14 @@ namespace CWX_MegaMod.ChadMode
             _oldStaminaCoef = _player.ActiveHealthController.StaminaCoeff;
         }
 
-        public void StartTask()
+        public async Task StartTask()
         {
             if (_player == null)
-            {   
+            {
                 MegaMod.LogToScreen("Player object was null in StaminaScript", EMessageType.Error);
                 return;
             }
-            
+
             // Game does not use staminaCoeff, do this a different way.
             // _player.ActiveHealthController.SetStaminaCoeff((MegaMod.UnlimitesStamina.Value ? _newStaminaCoef : _oldStaminaCoef));
         }
