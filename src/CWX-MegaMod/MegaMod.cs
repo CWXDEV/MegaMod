@@ -5,6 +5,7 @@ using CWX_MegaMod.BotMonitor.Models;
 using CWX_MegaMod.ChadMode;
 using CWX_MegaMod.Config;
 using CWX_MegaMod.InventoryViewer;
+using CWX_MegaMod.LootLoss;
 using CWX_MegaMod.PainkillerDesat;
 using CWX_MegaMod.SpaceUser;
 using CWX_MegaMod.TradingPlayerView;
@@ -39,7 +40,10 @@ namespace CWX_MegaMod
 		internal static ConfigEntry<bool> BetterThermalMode { get; private set; }
 		internal static ConfigEntry<bool> NightVisionMode { get; private set; }
 		internal static ConfigEntry<bool> CameraShake { get; private set; }
-		// internal static ConfigEntry<bool> WindowWiper { get; private set; }
+		internal static ConfigEntry<bool> WindowWiper { get; private set; }
+		internal static ConfigEntry<bool> LootLoss { get; private set; }
+		internal static ConfigEntry<bool> FoodWater { get; private set; }
+		internal static ConfigEntry<bool> InstantSearch { get; private set; }
 
 		public void Awake()
 		{
@@ -57,6 +61,9 @@ namespace CWX_MegaMod
 			new PainkillerDesatScript4().Enable();
 			// new WeatherPatcherScopePatch().Enable();
 			new CameraShakePatch().Enable();
+			new LootLossPatch().Enable();
+			new HydrationPatch().Enable();
+			new EnergyPatch().Enable();
 		}
 
 		// Higher order number comes first
@@ -73,12 +80,15 @@ namespace CWX_MegaMod
 			PainkillerDesat = Config.Bind("1- All Mods", "PainkillerDesat - On/Off", false, new ConfigDescription("Enable PainkillerDesat - Removes effects from taking painkillers", tags: new ConfigurationManagerAttributes() { Order = 3 }));
 			WeatherDebug = Config.Bind("1- All Mods", "WeatherDebugMode - On/Off", false, new ConfigDescription("Enable WeatherDebugMode - Makes it super sunny", tags: new ConfigurationManagerAttributes() { Order = 2 }));
 			FogRemover = Config.Bind("1- All Mods", "FogRemover - On/Off", false, new ConfigDescription("Enable FogRemover - Removes fog", tags: new ConfigurationManagerAttributes() { Order = 1 }));
-			// WindowWiper = Config.Bind("1- All Mods", "WindowWiper - On/Off", false, new ConfigDescription("Enable WindowWiper - Removes Windows", tags: new ConfigurationManagerAttributes() { Order = 1 }));
+			WindowWiper = Config.Bind("1- All Mods", "WindowWiper - On/Off", false, new ConfigDescription("Enable WindowWiper - Removes Windows", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 
 			// MasterKey Settings
 			MasterKeyToUse = Config.Bind("3- MasterKey", "MasterKeyToUse", EMasterKeys.Yellow, new ConfigDescription("This will be set to all unlockable doors", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 
 			// Debugging Mods
+			InstantSearch = Config.Bind("2- Debug Mods", "InstantSearch - On/Off", false, new ConfigDescription("Enable InstantSearch - Enables InstantSearch", tags: new ConfigurationManagerAttributes() { Order = 10 }));
+			FoodWater = Config.Bind("2- Debug Mods", "FoodWater - On/Off", false, new ConfigDescription("Enable FoodWater - removes hydration and energy drain", tags: new ConfigurationManagerAttributes() { Order = 9 }));
+			LootLoss = Config.Bind("2- Debug Mods", "LootLoss - On/Off", false, new ConfigDescription("Enable LootLoss - removes loot on map load", tags: new ConfigurationManagerAttributes() { Order = 8 }));
 			BotMonitor = Config.Bind("2- Debug Mods", "BotMonitor - On/Off", false, new ConfigDescription("Enable BotMonitor - Adds a custom gui for Bot Monitoring", tags: new ConfigurationManagerAttributes() { Order = 7 }));
 			InventoryViewer = Config.Bind("2- Debug Mods", "InventoryViewer - On/Off", false, new ConfigDescription("Enable InventoryViewer - Changes inventory view to show all containers or not", tags: new ConfigurationManagerAttributes() { Order = 6 }));
 			GodMode = Config.Bind("2- Debug Mods", "GodMode - On/Off", false, new ConfigDescription("Enable GodMode - Unable to be killed", tags: new ConfigurationManagerAttributes() { Order = 5 }));
