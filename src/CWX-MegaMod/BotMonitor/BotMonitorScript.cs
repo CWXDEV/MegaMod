@@ -16,6 +16,7 @@ namespace CWX_MegaMod.BotMonitor
         private GUIContent _guiContent;
         public GUIStyle TextStyle;
         private Player _player;
+        private Camera _camera;
         private Dictionary<string, List<Player>> _zoneAndPlayers = new Dictionary<string, List<Player>>();
         private Dictionary<string, BotRoleAndDiffClass> _playerRoleAndDiff = new Dictionary<string, BotRoleAndDiffClass>();
         private List<BotZone> _zones;
@@ -38,6 +39,9 @@ namespace CWX_MegaMod.BotMonitor
 
                 // Get Player from GameWorld
                 _player = _gameWorld.MainPlayer;
+
+                // get camera of player
+                _camera = CameraClass.Instance.Camera;
 
                 // Make new rect to use for GUI
                 _rect = new Rect(0, 60, 0, 0);
@@ -85,7 +89,7 @@ namespace CWX_MegaMod.BotMonitor
                     _zoneAndPlayers[owner.BotsGroup.BotZone.NameZone].Remove(player);
                     _playerRoleAndDiff.Remove(player.ProfileId);
                 };
-                
+
             }
             catch (Exception e)
             {
@@ -110,9 +114,6 @@ namespace CWX_MegaMod.BotMonitor
         {
             try
             {
-                // should no longer need as script is disabled or enabled instead
-                // if (!MegaMod.BotMonitor.Value) return;
-
                 // set basics on GUI
                 if (TextStyle == null)
                 {
@@ -159,7 +160,7 @@ namespace CWX_MegaMod.BotMonitor
 
                         foreach (var player in _zoneAndPlayers[zone.Key].Where(player => player.HealthController.IsAlive))
                         {
-                            _distance = Vector3.Distance(player.Transform.position, _player.CameraPosition.position);
+                            _distance = Vector3.Distance(player.Transform.position, _camera.transform.position);
                             _content += $"> [{_distance:n2}m] [{_playerRoleAndDiff.First(x => x.Key == player.ProfileId).Value.Role}] " +
                                         $"[{player.Profile.Side}] [{_playerRoleAndDiff.First(x => x.Key == player.ProfileId).Value.Difficulty}] {player.Profile.Nickname}\n";
                         }
