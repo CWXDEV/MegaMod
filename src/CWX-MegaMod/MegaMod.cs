@@ -10,6 +10,7 @@ using CWX_MegaMod.PainkillerDesat;
 using CWX_MegaMod.SpaceUser;
 using CWX_MegaMod.TradingPlayerView;
 using CWX_MegaMod.WeatherPatcher;
+// using CWX_MegaMod.WindowWiper;
 using EFT.Communications;
 using EFT.UI;
 using UnityEngine;
@@ -40,7 +41,7 @@ namespace CWX_MegaMod
 		internal static ConfigEntry<bool> BetterThermalMode { get; private set; }
 		internal static ConfigEntry<bool> NightVisionMode { get; private set; }
 		internal static ConfigEntry<bool> CameraShake { get; private set; }
-		internal static ConfigEntry<bool> WindowWiper { get; private set; }
+		// internal static ConfigEntry<bool> WindowWiper { get; private set; }
 		internal static ConfigEntry<bool> LootLoss { get; private set; }
 		internal static ConfigEntry<bool> FoodWater { get; private set; }
 		internal static ConfigEntry<bool> InstantSearch { get; private set; }
@@ -80,7 +81,7 @@ namespace CWX_MegaMod
 			PainkillerDesat = Config.Bind("1- All Mods", "PainkillerDesat - On/Off", false, new ConfigDescription("Enable PainkillerDesat - Removes effects from taking painkillers", tags: new ConfigurationManagerAttributes() { Order = 3 }));
 			WeatherDebug = Config.Bind("1- All Mods", "WeatherDebugMode - On/Off", false, new ConfigDescription("Enable WeatherDebugMode - Makes it super sunny", tags: new ConfigurationManagerAttributes() { Order = 2 }));
 			FogRemover = Config.Bind("1- All Mods", "FogRemover - On/Off", false, new ConfigDescription("Enable FogRemover - Removes fog", tags: new ConfigurationManagerAttributes() { Order = 1 }));
-			WindowWiper = Config.Bind("1- All Mods", "WindowWiper - On/Off", false, new ConfigDescription("Enable WindowWiper - Removes Windows", tags: new ConfigurationManagerAttributes() { Order = 1 }));
+			// WindowWiper = Config.Bind("1- All Mods", "WindowWiper - On/Off", false, new ConfigDescription("Enable WindowWiper - Removes Windows", tags: new ConfigurationManagerAttributes() { Order = 1 }));
 
 			// MasterKey Settings
 			MasterKeyToUse = Config.Bind("3- MasterKey", "MasterKeyToUse", EMasterKeys.Yellow, new ConfigDescription("This will be set to all unlockable doors", tags: new ConfigurationManagerAttributes() { Order = 1 }));

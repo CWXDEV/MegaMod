@@ -8,7 +8,6 @@ using CWX_MegaMod.EnvironmentEnjoyer;
 using CWX_MegaMod.GrassCutter;
 using CWX_MegaMod.MasterKey;
 using CWX_MegaMod.WeatherPatcher;
-using CWX_MegaMod.WindowWiper;
 // using CWX_MegaMod.WindowWiper;
 using EFT;
 using EFT.UI;
@@ -30,7 +29,7 @@ namespace CWX_MegaMod
         public BotMonitorScript _botMonitorScript;
         public GodModeScript _godModeScript;
         public CameraScripts _cameraScripts;
-        public TempFuckaroundScript _tempFuckaroundScript;
+        // public TempFuckaroundScript _tempFuckaroundScript;
         public InstantSearchScript _instantSearchScript;
 
         private void Awake()
@@ -75,7 +74,7 @@ namespace CWX_MegaMod
             _botMonitorScript = _gameWorld.gameObject.AddComponent<BotMonitorScript>();
             _godModeScript = _gameWorld.gameObject.AddComponent<GodModeScript>();
             _cameraScripts = _gameWorld.gameObject.AddComponent<CameraScripts>();
-            _tempFuckaroundScript = _gameWorld.gameObject.AddComponent<TempFuckaroundScript>();
+            // _tempFuckaroundScript = _gameWorld.gameObject.AddComponent<TempFuckaroundScript>();
             _instantSearchScript = _gameWorld.gameObject.AddComponent<InstantSearchScript>();
         }
 
@@ -88,7 +87,7 @@ namespace CWX_MegaMod
             _weatherPatcherScript.StartTask();
             _godModeScript.StartTask();
             _cameraScripts.StartTask();
-            _tempFuckaroundScript.StartTask();
+            // _tempFuckaroundScript.StartTask();
             _instantSearchScript.StartTask();
         }
 
@@ -108,7 +107,7 @@ namespace CWX_MegaMod
             MegaMod.ThermalMode.SettingChanged += (a, b) => _cameraScripts.StartTask();
             MegaMod.NightVisionMode.SettingChanged += (a, b) => _cameraScripts.StartTask();
             MegaMod.BetterThermalMode.SettingChanged += (a, b) => _cameraScripts.StartTask();
-            MegaMod.WindowWiper.SettingChanged += (a, b) => _tempFuckaroundScript.StartTask();
+            // MegaMod.WindowWiper.SettingChanged += (a, b) => _tempFuckaroundScript.StartTask();
             MegaMod.InstantSearch.SettingChanged += (a, b) => _instantSearchScript.StartTask();
         }
 
